@@ -62,6 +62,16 @@
           <input type="email" id="buyer-email-hero" placeholder="Your email" autocomplete="email">
           <p class="buyer-error" id="buyer-error-hero" hidden>Please add your name and a valid email — that's all we need.</p>
         </form>
+        <div class="card-fields" id="card-fields-hero" hidden>
+          <p class="card-fields-title">Pay by card — no extra details needed</p>
+          <div class="card-field" id="card-number-hero"></div>
+          <div class="card-field-row">
+            <div class="card-field" id="card-expiry-hero"></div>
+            <div class="card-field" id="card-cvv-hero"></div>
+          </div>
+          <button type="button" class="btn btn-big card-pay-btn" id="card-pay-hero">Pay $29.99</button>
+          <p class="buyer-error" id="card-error-hero" hidden>Payment didn't go through — please check your card details and try again.</p>
+        </div>
         <div class="paypal-slot" id="paypal-hero" aria-live="polite"></div>
         <div class="success-box" id="success-hero" hidden>
           <p class="success-title">Payment complete — thank you!</p>
@@ -164,6 +174,16 @@
             <input type="email" id="buyer-email-pricing" placeholder="Your email" autocomplete="email">
             <p class="buyer-error" id="buyer-error-pricing" hidden>Please add your name and a valid email — that's all we need.</p>
           </form>
+          <div class="card-fields" id="card-fields-pricing" hidden>
+            <p class="card-fields-title">Pay by card — no extra details needed</p>
+            <div class="card-field" id="card-number-pricing"></div>
+            <div class="card-field-row">
+              <div class="card-field" id="card-expiry-pricing"></div>
+              <div class="card-field" id="card-cvv-pricing"></div>
+            </div>
+            <button type="button" class="btn btn-big card-pay-btn" id="card-pay-pricing">Pay $29.99</button>
+            <p class="buyer-error" id="card-error-pricing" hidden>Payment didn't go through — please check your card details and try again.</p>
+          </div>
           <div class="paypal-slot" id="paypal-pricing" aria-live="polite"></div>
           <div class="success-box" id="success-pricing" hidden>
             <p class="success-title">Payment complete — thank you!</p>
@@ -305,7 +325,7 @@
   </div>
 </footer>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD&amp;components=buttons,applepay"></script>
-<script src="script.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD&amp;components=buttons,card-fields,applepay"></script>
+<script src="script.js?v=2"></script>
 </body>
 </html>
