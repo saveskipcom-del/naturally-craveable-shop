@@ -78,8 +78,11 @@
     slot.appendChild(p);
   }
 
-  /* ---- PayPal / debit-card buttons ---- */
-  function renderPayPal(prefix) {
+  /* ---- PayPal / debit-card buttons ----
+     When our own card form is live (CardFields eligible), show only the
+     PayPal wallet button here. Otherwise show the standard buttons,
+     which include PayPal's own card form as a fallback. */
+  function renderPayPal(prefix, cardFormLive) {
     var slot = document.getElementById("paypal-" + prefix);
     var successBox = document.getElementById("success-" + prefix);
     if (!slot) { return; }
@@ -88,7 +91,7 @@
       return;
     }
     try {
-      window.paypal.Buttons({
+      var config = {
         style: { layout: "vertical", color: "gold", shape: "pill", label: "buynow" },
         onClick: function (data, actions) {
           if (!getBuyer(prefix)) { return actions.reject(); }
@@ -104,9 +107,68 @@
         },
         onCancel: function () { showError(slot, successBox); },
         onError: function () { showError(slot, successBox); }
-      }).render("#paypal-" + prefix);
+      };
+      if (cardFormLive && window.paypal.FUNDING && window.paypal.FUNDING.PAYPAL) {
+        config.fundingSource = window.paypal.FUNDING.PAYPAL;
+      }
+      window.paypal.Buttons(config).render("#paypal-" + prefix);
     } catch (e) {
       showSetupNote(slot);
+    }
+  }
+
+  /* ---- Our own short card form, powered by PayPal CardFields ----
+     PayPal's own card form cannot be shortened — it always asks for billing
+     address, mobile and ship-to. CardFields lets us render just number /
+     expiry / CVV on our page (PayPal hosts the fields, so no card data ever
+     touches our code). Billing address is optional and we do not collect it.
+     Only renders when the PayPal account is approved for Advanced Credit
+     and Debit Card Payments; otherwise the standard PayPal buttons above
+     stay as the card fallback. */
+  function renderCardFields(prefix) {
+    var block = document.getElementById("card-fields-" + prefix);
+    var payBtn = document.getElementById("card-pay-" + prefix);
+    var errEl = document.getElementById("card-error-" + prefix);
+    if (!block || !payBtn) { return false; }
+    if (typeof window.paypal === "undefined" || !window.paypal.CardFields) {
+      return false;
+    }
+    try {
+      var cardFields = window.paypal.CardFields({
+        createOrder: function (data, actions) {
+          return actions.order.create(buildOrder(getBuyer(prefix)));
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            if (details && details.status === "COMPLETED") {
+              showSuccess(prefix, ["paypal-" + prefix, "applepay-" + prefix], details, data.orderID);
+            } else {
+              if (errEl) { errEl.hidden = false; }
+            }
+          });
+        }
+      });
+      if (!cardFields.isEligible()) { return false; }
+      var style = { input: { "font-size": "16px", "font-family": "inherit", color: "#1e3d2b" } };
+      cardFields.NumberField({ style: style, placeholder: "Card number" }).render("#card-number-" + prefix);
+      cardFields.ExpiryField({ style: style, placeholder: "MM / YY" }).render("#card-expiry-" + prefix);
+      cardFields.CVVField({ style: style, placeholder: "CVV" }).render("#card-cvv-" + prefix);
+      block.hidden = false;
+      payBtn.addEventListener("click", function () {
+        var buyer = getBuyer(prefix);
+        if (!buyer) { return; }
+        if (errEl) { errEl.hidden = true; }
+        payBtn.disabled = true;
+        cardFields.submit({ cardholderName: buyer.name }).then(function () {
+          payBtn.disabled = false;
+        }).catch(function () {
+          payBtn.disabled = false;
+          if (errEl) { errEl.hidden = false; }
+        });
+      });
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
@@ -168,10 +230,12 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    var cardHero = renderCardFields("hero");
+    var cardPricing = renderCardFields("pricing");
     renderApplePay("hero");
-    renderPayPal("hero");
+    renderPayPal("hero", cardHero);
     renderApplePay("pricing");
-    renderPayPal("pricing");
+    renderPayPal("pricing", cardPricing);
     initNotifyForms();
   });
 })();
