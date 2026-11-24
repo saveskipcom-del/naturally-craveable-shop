@@ -54,6 +54,14 @@
           <li><strong>Under 250</strong> calories per dessert</li>
         </ul>
         <p class="price-line"><span class="price">$29.99</span> <s class="list-price">$39.99</s> <span class="price-note">launch price</span></p>
+        <div class="applepay-slot" id="applepay-hero" aria-live="polite"></div>
+        <p class="pay-divider" id="divider-hero" hidden><span>or pay with PayPal / card</span></p>
+        <form class="buyer-form" id="buyer-hero" novalidate>
+          <p class="buyer-title">Your details — just name &amp; email</p>
+          <input type="text" id="buyer-name-hero" placeholder="Your name" autocomplete="name">
+          <input type="email" id="buyer-email-hero" placeholder="Your email" autocomplete="email">
+          <p class="buyer-error" id="buyer-error-hero" hidden>Please add your name and a valid email — that's all we need.</p>
+        </form>
         <div class="paypal-slot" id="paypal-hero" aria-live="polite"></div>
         <div class="success-box" id="success-hero" hidden>
           <p class="success-title">Payment complete — thank you!</p>
@@ -148,6 +156,14 @@
             <li>Instant PDF download</li>
             <li>30-day money-back guarantee</li>
           </ul>
+          <div class="applepay-slot" id="applepay-pricing" aria-live="polite"></div>
+          <p class="pay-divider" id="divider-pricing" hidden><span>or pay with PayPal / card</span></p>
+          <form class="buyer-form" id="buyer-pricing" novalidate>
+            <p class="buyer-title">Your details — just name &amp; email</p>
+            <input type="text" id="buyer-name-pricing" placeholder="Your name" autocomplete="name">
+            <input type="email" id="buyer-email-pricing" placeholder="Your email" autocomplete="email">
+            <p class="buyer-error" id="buyer-error-pricing" hidden>Please add your name and a valid email — that's all we need.</p>
+          </form>
           <div class="paypal-slot" id="paypal-pricing" aria-live="polite"></div>
           <div class="success-box" id="success-pricing" hidden>
             <p class="success-title">Payment complete — thank you!</p>
@@ -289,7 +305,7 @@
   </div>
 </footer>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD&amp;components=buttons,applepay"></script>
 <script src="script.js"></script>
 </body>
 </html>
