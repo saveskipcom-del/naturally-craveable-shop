@@ -20,13 +20,11 @@
      themselves store only the SHA-256 hash of each key. */
   var KEYS = {
     hero: "P4YI168oKBSXv0Kssy2FQe5h3PurUDSxesNXb9MG8iw",
-    book2: "0TcLfQT_nBOTjlSjzn36En06xejnCB-UDwkUshCN_zs",
     book3: "QmKTDgR2xba3Hx-f-qwZhHpaQL6P4rr94gSMP-s_R6Y",
     bundle: "P4YI168oKBSXv0Kssy2FQe5h3PurUDSxesNXb9MG8iw"
   };
   var DOWNLOAD_PAGE = {
     hero: "download-bundle.html",
-    book2: "download-book2.html",
     book3: "download-book3.html",
     bundle: "download-bundle.html"
   };
@@ -239,7 +237,7 @@
       }
       renderApplePay("hero");
       renderPayPal("hero");
-      renderLazyCheckouts(["book2", "book3", "bundle"]);
+      renderLazyCheckouts(["book3", "bundle"]);
     });
   });
 })();
