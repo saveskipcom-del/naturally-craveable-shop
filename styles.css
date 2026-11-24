@@ -396,3 +396,20 @@ footer .brand span { color: var(--gold); }
   .notify-form { flex-direction: column; }
   .notify-form .btn { width: 100%; }
 }
+@media (max-width: 480px) {
+  /* Small phones: keep the sticky nav on one line, no sideways scroll */
+  .wrap { padding: 0 16px; }
+  .nav-inner { gap: .6rem; min-height: 56px; }
+  .brand {
+    font-size: 1.12rem; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .btn-small { font-size: .85rem; padding: .55em .9em; }
+  h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.55rem; }
+  .section { padding: 44px 0; }
+  .hero { padding: 40px 0 48px; }
+  .price { font-size: 1.7rem; }
+  .list-price { font-size: 1.05rem; }
+  .strip strong { font-size: 1.6rem; }
+}
