@@ -15,6 +15,25 @@
     bundle: { price: "49.99", description: "Naturally Craveable: Complete Kitchen — all 3 books (240-recipe PDF ebooks)" }
   };
 
+  /* Download keys (per product). These live here so the success box can
+     link the buyer to their gated download page. The download pages
+     themselves store only the SHA-256 hash of each key. */
+  var KEYS = {
+    hero: "P4YI168oKBSXv0Kssy2FQe5h3PurUDSxesNXb9MG8iw",
+    pricing: "unsAUHqlyJqAbOc_hOyHoAQf_N5QWaHZS4fiS2YhRjk",
+    book2: "0TcLfQT_nBOTjlSjzn36En06xejnCB-UDwkUshCN_zs",
+    book3: "QmKTDgR2xba3Hx-f-qwZhHpaQL6P4rr94gSMP-s_R6Y",
+    bundle: "P4YI168oKBSXv0Kssy2FQe5h3PurUDSxesNXb9MG8iw"
+  };
+  var DOWNLOAD_PAGE = {
+    hero: "download-bundle.html",
+    pricing: "download.html",
+    book2: "download-book2.html",
+    book3: "download-book3.html",
+    bundle: "download-bundle.html"
+  };
+
+
   /* Digital goods: never ask for a shipping address. */
   function buildOrder(prefix) {
     var product = PRODUCTS[prefix] || PRODUCTS.pricing;
@@ -37,6 +56,9 @@
     if (!box) { return; }
     var idSpan = box.querySelector(".order-id");
     if (idSpan) { idSpan.textContent = (details && details.id) || orderId || ""; }
+    var dlUrl = DOWNLOAD_PAGE[prefix] + "?k=" + encodeURIComponent(KEYS[prefix] || "")
+      + "&order=" + encodeURIComponent((details && details.id) || orderId || "");
+    box.querySelectorAll("a.btn-big").forEach(function (a) { a.setAttribute("href", dlUrl); });
     box.hidden = false;
     box.scrollIntoView({ behavior: "smooth", block: "center" });
   }
