@@ -137,6 +137,29 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* PayPal slots */
 .paypal-slot { max-width: 420px; }
+.applepay-slot { max-width: 420px; }
+.applepay-slot:empty { display: none; }
+.pay-divider {
+  max-width: 420px; text-align: center; color: var(--muted);
+  font-size: .85rem; margin: .9rem 0;
+  display: flex; align-items: center; gap: .6rem;
+}
+.pay-divider::before, .pay-divider::after {
+  content: ""; flex: 1; border-top: 1px solid var(--line);
+}
+.buyer-form { max-width: 420px; margin-bottom: .4rem; }
+.buyer-title { font-size: .9rem; font-weight: 700; color: var(--green); margin-bottom: .5rem; }
+.buyer-form input {
+  width: 100%; padding: .7rem .9rem; margin-bottom: .5rem;
+  border: 1px solid var(--line); border-radius: 10px;
+  font: inherit; background: #fff; color: inherit;
+}
+.buyer-form input:focus { outline: 2px solid var(--copper); outline-offset: 1px; }
+.buyer-error {
+  background: #fdf0ec; border: 1px solid #e8c4b8;
+  color: #7a3b26; border-radius: 10px;
+  padding: .7rem .9rem; font-size: .9rem; margin: 0 0 .5rem;
+}
 .paypal-slot .setup-note {
   background: var(--cream-2);
   border: 1px solid var(--line);
