@@ -8,7 +8,7 @@
   /* Prices + descriptions per checkout slot. PayPal collects the buyer's
      name, email and card details in its own form — we ask for nothing. */
   var PRODUCTS = {
-    hero: { price: "29.99", description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook" },
+    hero: { price: "49.99", description: "Naturally Craveable: Complete Kitchen — all 3 books (240-recipe PDF ebooks)" },
     pricing: { price: "29.99", description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook" },
     book2: { price: "24.99", description: "Naturally Craveable: The Everyday Weight Loss Kitchen — 60-recipe PDF ebook" },
     book3: { price: "29.99", description: "Naturally Craveable: Gut & Debloat Reset — 60-recipe PDF ebook" },
