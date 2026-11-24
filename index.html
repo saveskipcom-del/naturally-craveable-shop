@@ -136,7 +136,7 @@
   <section class="section" id="pricing">
     <div class="wrap">
       <p class="eyebrow">The Naturally Craveable books</p>
-      <h2>Two books ready. The third is coming.</h2>
+      <h2>All three books are ready.</h2>
       <div class="pricing-grid">
 
         <article class="price-card featured">
@@ -190,7 +190,7 @@
         </article>
 
         <article class="price-card">
-          <p class="card-tag soon">Coming soon</p>
+          <p class="card-tag">Available now</p>
           <h3>Book 3 — Gut &amp; Debloat Reset</h3>
           <p class="card-sub">60 Gut-Friendly Recipes to Beat the Bloat in 28 Days — Fruit + Spice Combos, Refreshers, Smoothies, Chia Mornings &amp; Simple Healing Meals</p>
           <p class="card-price"><span class="price">$29.99</span></p>
@@ -199,13 +199,19 @@
             <li>Fiber grams + Gut Score on every recipe</li>
             <li>12 fruit + spice combos, refreshers, smoothies</li>
             <li>CRAVE method + 28-day plan with shopping lists</li>
+            <li>Instant PDF download</li>
+            <li>30-day money-back guarantee</li>
           </ul>
-          <form class="notify-form" data-book="Book 3 — Gut &amp; Debloat Reset">
-            <label class="sr-only" for="email-3">Email for Book 3 launch notice</label>
-            <input type="email" id="email-3" placeholder="Your email" required>
-            <button class="btn" type="submit">Notify me</button>
-          </form>
-          <p class="notify-done" hidden>You're on the list — we'll email you the moment it launches.</p>
+          <div class="applepay-slot" id="applepay-book3" aria-live="polite"></div>
+          <p class="pay-divider" id="divider-book3" hidden><span>or pay with PayPal / card</span></p>
+          <div class="paypal-slot" id="paypal-book3" aria-live="polite"></div>
+          <div class="success-box" id="success-book3" hidden>
+            <p class="success-title">Payment complete — thank you!</p>
+            <p>Order ID: <span class="order-id"></span></p>
+            <a class="btn btn-big" href="assets/Naturally-Craveable-Gut-Debloat-Reset.pdf" download>Download your book (PDF)</a>
+            <p class="success-note">Your download link is on this page — save the PDF now.</p>
+          </div>
+          <p class="trust">Instant PDF download · PayPal secure checkout</p>
         </article>
 
         <article class="price-card bundle">
@@ -302,6 +308,6 @@
 </footer>
 
 <div id="paypal-sdk-url" data-url="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD&amp;components=buttons,applepay" hidden></div>
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 </body>
 </html>
