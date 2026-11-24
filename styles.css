@@ -160,6 +160,19 @@ img { max-width: 100%; height: auto; display: block; }
   color: #7a3b26; border-radius: 10px;
   padding: .7rem .9rem; font-size: .9rem; margin: 0 0 .5rem;
 }
+
+/* Own card form (PayPal CardFields — hosted fields, no card data touches us) */
+.card-fields { max-width: 420px; margin-bottom: .6rem; }
+.card-fields-title { font-size: .9rem; font-weight: 700; color: var(--green); margin-bottom: .5rem; }
+.card-field {
+  border: 1px solid var(--line); border-radius: 10px;
+  background: #fff; padding: .7rem .9rem; margin-bottom: .5rem;
+  min-height: 48px;
+}
+.card-field:focus-within { outline: 2px solid var(--copper); outline-offset: 1px; }
+.card-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.card-pay-btn { width: 100%; margin: .2rem 0 .5rem; }
+.card-pay-btn:disabled { opacity: .6; cursor: wait; }
 .paypal-slot .setup-note {
   background: var(--cream-2);
   border: 1px solid var(--line);
