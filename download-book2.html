@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank you — Your download is ready | Naturally Craveable</title>
+<meta name="description" content="Thank you for your purchase. Your copy of Naturally Craveable: The Everyday Weight Loss Kitchen is ready to download.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://craveable.click/download-book2.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/cover-b2-300.jpg">
+<style>
+  .thanks { padding: 64px 0 80px; }
+  .thanks-box {
+    background: #eef4ea; border: 2px solid var(--green);
+    border-radius: var(--radius); padding: 2rem;
+    max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .thanks-box h1 { font-size: 2rem; margin-bottom: .4rem; }
+  .thanks-box .order-line { color: var(--muted); font-size: .95rem; margin-bottom: 1.2rem; }
+  .thanks-book { display: flex; gap: 1.2rem; align-items: center; text-align: left; margin: 1.2rem 0; }
+  .thanks-book img { width: 110px; border-radius: 10px; box-shadow: 0 8px 22px rgba(30,61,43,.2); }
+  .thanks-book h2 { font-size: 1.2rem; margin-bottom: .2rem; }
+  .thanks-book p { color: var(--muted); font-size: .95rem; }
+  .thanks-box .btn-big { width: 100%; margin: .8rem 0 .4rem; }
+  .thanks-note { font-size: .9rem; color: var(--muted); }
+  .thanks-steps { text-align: left; max-width: 460px; margin: 1.4rem auto 0; }
+  .thanks-steps li { margin-bottom: .4rem; }
+  .thanks-foot { text-align: center; margin-top: 1.6rem; font-size: .95rem; color: var(--muted); }
+  .thanks-foot a { color: var(--green); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/">Naturally <span>Craveable</span></a>
+    <a class="btn btn-small" href="/#pricing">Get the book — $24.99</a>
+  </div>
+</header>
+
+<main>
+  <section class="thanks">
+    <div class="wrap">
+      <div class="thanks-box">
+        <h1>Thank you! Your book is ready.</h1>
+        <p class="order-line" id="order-line" hidden>Order ID: <strong id="order-id"></strong></p>
+        <div class="thanks-book">
+          <img src="assets/cover-b2-300.jpg" alt="Cover of Naturally Craveable: The Everyday Weight Loss Kitchen" width="220" height="330">
+          <div>
+            <h2>Naturally Craveable: The Everyday Weight Loss Kitchen</h2>
+            <p>60 recipes · 221 pages · Instant PDF download</p>
+          </div>
+        </div>
+        <a class="btn btn-big" href="assets/Naturally-Craveable-The-Everyday-Weight-Loss-Kitchen.pdf" download>Download your book (PDF)</a>
+        <p class="thanks-note">Save the PDF to your device now — this is your copy to keep.</p>
+        <ol class="thanks-steps">
+          <li><strong>Download</strong> the PDF above.</li>
+          <li><strong>Open it</strong> on any phone, tablet or computer.</li>
+          <li><strong>Start cooking</strong> — try a 15-minute lunch, or follow the 4-week plan from page one.</li>
+        </ol>
+      </div>
+      <p class="thanks-foot">Questions? Message us on <a href="https://www.instagram.com/naturallycraveable/">Instagram @naturallycraveable</a> · <a href="/">Back to the shop</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Naturally Craveable · Instant PDF download · 30-day money-back guarantee</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var order = params.get("order");
+  if (order) {
+    document.getElementById("order-id").textContent = order;
+    document.getElementById("order-line").hidden = false;
+  }
+})();
+</script>
+</body>
+</html>
