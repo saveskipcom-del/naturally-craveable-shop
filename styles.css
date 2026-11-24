@@ -119,7 +119,7 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-links a { font-weight: 700; }
 
 /* PayPal slots */
-.paypal-slot { max-width: 420px; }
+.paypal-slot { max-width: 420px; min-height: 165px; }
 .applepay-slot { max-width: 420px; }
 .applepay-slot:empty { display: none; }
 .pay-divider {
