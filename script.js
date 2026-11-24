@@ -11,7 +11,8 @@
     hero: { price: "29.99", description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook" },
     pricing: { price: "29.99", description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook" },
     book2: { price: "24.99", description: "Naturally Craveable: The Everyday Weight Loss Kitchen — 60-recipe PDF ebook" },
-    book3: { price: "29.99", description: "Naturally Craveable: Gut & Debloat Reset — 60-recipe PDF ebook" }
+    book3: { price: "29.99", description: "Naturally Craveable: Gut & Debloat Reset — 60-recipe PDF ebook" },
+    bundle: { price: "49.99", description: "Naturally Craveable: Complete Kitchen — all 3 books (240-recipe PDF ebooks)" }
   };
 
   /* Digital goods: never ask for a shipping address. */
@@ -170,6 +171,7 @@
         showSetupNote(document.getElementById("paypal-pricing"));
         showSetupNote(document.getElementById("paypal-book2"));
         showSetupNote(document.getElementById("paypal-book3"));
+        showSetupNote(document.getElementById("paypal-bundle"));
         return;
       }
       renderApplePay("hero");
@@ -180,6 +182,8 @@
       renderPayPal("book2");
       renderApplePay("book3");
       renderPayPal("book3");
+      renderApplePay("bundle");
+      renderPayPal("bundle");
     });
   });
 })();
