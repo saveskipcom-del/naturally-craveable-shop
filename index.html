@@ -152,7 +152,7 @@
   <section class="section" id="pricing">
     <div class="wrap">
       <p class="eyebrow">The Naturally Craveable books</p>
-      <h2>Start with Book 1. The rest are coming.</h2>
+      <h2>Two books ready. The third is coming.</h2>
       <div class="pricing-grid">
 
         <article class="price-card featured">
@@ -197,7 +197,7 @@
         </article>
 
         <article class="price-card">
-          <p class="card-tag soon">Coming soon</p>
+          <p class="card-tag">Available now</p>
           <h3>Book 2 — The Everyday Weight Loss Kitchen</h3>
           <p class="card-sub">60 Simple, Filling Recipes That Help You Lose Weight Without Ever Feeling Hungry</p>
           <p class="card-price"><span class="price">$24.99</span></p>
@@ -206,13 +206,35 @@
             <li>Mornings, 15-minute lunches, one-pan dinners</li>
             <li>Slow cooker &amp; meal-prep mains, snacks, sides</li>
             <li>Full-Plate Rules system + 4-week plan</li>
+            <li>Instant PDF download</li>
+            <li>30-day money-back guarantee</li>
           </ul>
-          <form class="notify-form" data-book="Book 2 — The Everyday Weight Loss Kitchen">
-            <label class="sr-only" for="email-2">Email for Book 2 launch notice</label>
-            <input type="email" id="email-2" placeholder="Your email" required>
-            <button class="btn" type="submit">Notify me</button>
+          <div class="applepay-slot" id="applepay-book2" aria-live="polite"></div>
+          <p class="pay-divider" id="divider-book2" hidden><span>or pay with PayPal / card</span></p>
+          <div class="paypal-slot" id="paypal-book2" aria-live="polite"></div>
+          <form class="buyer-form" id="buyer-book2" novalidate>
+            <p class="buyer-title">Paying by card? Add your name &amp; email first</p>
+            <input type="text" id="buyer-name-book2" placeholder="Your name" autocomplete="name">
+            <input type="email" id="buyer-email-book2" placeholder="Your email" autocomplete="email">
+            <p class="buyer-error" id="buyer-error-book2" hidden>Please add your name and a valid email — that's all we need.</p>
           </form>
-          <p class="notify-done" hidden>You're on the list — we'll email you the moment it launches.</p>
+          <div class="card-fields" id="card-fields-book2" hidden>
+            <p class="card-fields-title">Pay by card — no extra details needed</p>
+            <div class="card-field" id="card-number-book2"></div>
+            <div class="card-field-row">
+              <div class="card-field" id="card-expiry-book2"></div>
+              <div class="card-field" id="card-cvv-book2"></div>
+            </div>
+            <button type="button" class="btn btn-big card-pay-btn" id="card-pay-book2">Pay $24.99</button>
+            <p class="buyer-error" id="card-error-book2" hidden>Payment didn't go through — please check your card details and try again.</p>
+          </div>
+          <div class="success-box" id="success-book2" hidden>
+            <p class="success-title">Payment complete — thank you!</p>
+            <p>Order ID: <span class="order-id"></span></p>
+            <a class="btn btn-big" href="assets/Naturally-Craveable-The-Everyday-Weight-Loss-Kitchen.pdf" download>Download your book (PDF)</a>
+            <p class="success-note">Your download link is on this page — save the PDF now.</p>
+          </div>
+          <p class="trust">Instant PDF download · PayPal secure checkout</p>
         </article>
 
         <article class="price-card">
@@ -328,6 +350,6 @@
 </footer>
 
 <div id="paypal-sdk-url" data-url="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD&amp;components=buttons,card-fields,applepay" hidden></div>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>
