@@ -133,17 +133,21 @@
     } catch (e) { /* not eligible — leave the slot empty */ }
   }
 
-  /* ---- Notify-me forms (no backend — shows confirmation only) ---- */
-  function initNotifyForms() {
-    var forms = document.querySelectorAll(".notify-form");
-    forms.forEach(function (form) {
-      form.addEventListener("submit", function (ev) {
-        ev.preventDefault();
-        var done = form.parentElement.querySelector(".notify-done");
-        form.style.display = "none";
-        if (done) { done.hidden = false; }
-      });
-    });
+  /* ---- Sticky bottom buy bar (mobile only) ----
+     Appears only after the hero checkout scrolls out of view.
+     The bar has no PayPal button of its own — tapping it scrolls to #pricing. */
+  function initStickyBar() {
+    var bar = document.getElementById("sticky-bar");
+    var heroCheckout = document.getElementById("hero-checkout");
+    if (!bar || !heroCheckout) { return; }
+    if (!("IntersectionObserver" in window)) { return; }
+    var observer = new IntersectionObserver(function (entries) {
+      var visible = !entries[0].isIntersecting;
+      bar.classList.toggle("visible", visible);
+      bar.setAttribute("aria-hidden", visible ? "false" : "true");
+      document.body.classList.toggle("has-sticky-bar", visible);
+    }, { threshold: 0 });
+    observer.observe(heroCheckout);
   }
 
   /* ---- Load the PayPal SDK after the page renders ----
@@ -164,7 +168,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    initNotifyForms();
+    initStickyBar();
     loadPayPalSDK(function (ok) {
       if (!ok) {
         showSetupNote(document.getElementById("paypal-hero"));
