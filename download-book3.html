@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELWDRG4J22"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ELWDRG4J22');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank you — Your download is ready | Naturally Craveable</title>
+<meta name="description" content="Thank you for your purchase. Your copy of Naturally Craveable: Gut & Debloat Reset is ready to download.">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<link rel="canonical" href="https://craveable.click/download-book3.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/cover-b3-300.jpg">
+<style>
+  .thanks { padding: 64px 0 80px; }
+  .thanks-box {
+    background: #eef4ea; border: 2px solid var(--green);
+    border-radius: var(--radius); padding: 2rem;
+    max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .thanks-box h1 { font-size: 2rem; margin-bottom: .4rem; }
+  .thanks-box .order-line { color: var(--muted); font-size: .95rem; margin-bottom: 1.2rem; }
+  .thanks-book { display: flex; gap: 1.2rem; align-items: center; text-align: left; margin: 1.2rem 0; }
+  .thanks-book img { width: 110px; border-radius: 10px; box-shadow: 0 8px 22px rgba(30,61,43,.2); }
+  .thanks-book h2 { font-size: 1.2rem; margin-bottom: .2rem; }
+  .thanks-book p { color: var(--muted); font-size: .95rem; }
+  .thanks-box .btn-big { width: 100%; margin: .8rem 0 .4rem; }
+  .thanks-note { font-size: .9rem; color: var(--muted); }
+  .thanks-note.on { display: block; color: var(--green); font-weight: 700; }
+  .thanks-steps { text-align: left; max-width: 460px; margin: 1.4rem auto 0; }
+  .thanks-steps li { margin-bottom: .4rem; }
+  .thanks-foot { text-align: center; margin-top: 1.6rem; font-size: .95rem; color: var(--muted); }
+  .thanks-foot a { color: var(--green); font-weight: 700; }
+  .state { display: none; }
+  .state.on { display: block; }
+  .checking { text-align: center; padding: 70px 0; }
+  .spinner { width: 44px; height: 44px; margin: 0 auto 18px; border-radius: 50%;
+    border: 4px solid #e2e8df; border-top-color: var(--green); animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .key-form { display: flex; gap: .6rem; max-width: 460px; margin: 1.2rem auto 0; }
+  .key-form input { flex: 1; padding: .7rem .9rem; border: 1px solid #cfd8cc; border-radius: 10px; font-size: 1rem; }
+  .key-err { display: none; color: #b3261e; font-weight: 700; margin-top: .8rem; }
+  .key-err.on { display: block; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/">Naturally <span>Craveable</span></a>
+    <a class="btn btn-small" href="/#pricing">Get the book — $29.99</a>
+  </div>
+</header>
+
+<main>
+  <section class="thanks">
+    <div class="wrap">
+      <div class="state on" id="stateChecking">
+        <div class="checking">
+          <div class="spinner"></div>
+          <p>Checking your private link…</p>
+        </div>
+      </div>
+
+      <div class="state" id="stateUnlocked">
+        <div class="thanks-box">
+          <h1>Thank you! Your book is ready.</h1>
+          <p class="order-line" id="order-line" hidden>Order ID: <strong id="order-id"></strong></p>
+          <div class="thanks-book">
+            <img src="assets/cover-b3-300.jpg" alt="Cover of Naturally Craveable: Gut & Debloat Reset" width="220" height="330">
+            <div>
+              <h2>Naturally Craveable: Gut & Debloat Reset</h2>
+              <p>60 recipes · 144 pages · Instant PDF download</p>
+            </div>
+          </div>
+        <a class="btn btn-big" id="dlBtn" href="#" download>Download Gut & Debloat Reset (PDF)</a>
+        <p class="thanks-note" id="startedNote" hidden>Download has started 🎉</p>
+          <p class="thanks-note">Save the PDF to your device now — this is your copy to keep.</p>
+          <ol class="thanks-steps">
+            <li><strong>Download</strong> the PDF above.</li>
+            <li><strong>Open it</strong> on any phone, tablet or computer.</li>
+            <li><strong>Start cooking</strong> — try a gut-friendly breakfast, or follow the 28-day plan from page one.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="state" id="stateLocked">
+        <div class="thanks-box">
+          <h1>This is a private download page.</h1>
+          <p>Your download link was shown right after your purchase. Open that link, or paste your access key below.</p>
+          <form class="key-form" id="keyForm">
+            <input type="text" id="keyInput" placeholder="Paste your access key" autocomplete="off" spellcheck="false">
+            <button class="btn" type="submit">Unlock</button>
+          </form>
+          <p class="key-err" id="keyErr">That key didn't work — check it and try again.</p>
+        </div>
+      </div>
+
+      <p class="thanks-foot">Questions? Message us on <a href="https://www.instagram.com/naturallycraveable/">Instagram @naturallycraveable</a> · <a href="/">Back to the shop</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Naturally Craveable · Instant PDF download · 30-day money-back guarantee</p>
+  </div>
+</footer>
+
+<script>
+/*
+  Private-link gate (same pattern as thewellnessherb.com/download/).
+  Only the SHA-256 hash of the access key lives in this file — the key
+  itself is never written here. The key travels in the link (?k=...) or
+  can be pasted in the form below. The book file sits behind a long
+  random filename that is only revealed after the key checks out.
+*/
+var CONFIG = {"ACCESS_HASH": "1cf1403cf66ad8bb1f7f06d5604df5291456b261f4d940a4722ce9d99a3956c2", "STORE_KEY": "nc_dl_key_book3", "FILES": [{"label": "Gut & Debloat Reset", "path": "assets/dl-6f08e574b3346bbebb6a77da.pdf", "btn": "dlBtn", "note": "startedNote"}]};
+
+function showState(id){
+  var ids = ["stateChecking","stateUnlocked","stateLocked"];
+  for (var i=0;i<ids.length;i++){
+    document.getElementById(ids[i]).classList.toggle("on", ids[i]===id);
+  }
+}
+
+function extractKey(raw){
+  if(!raw) return "";
+  var s = String(raw).trim();
+  var m = s.match(/[?&#]k=([^&#\s]+)/);
+  if(m) return decodeURIComponent(m[1]).trim();
+  m = s.match(/[?&#](?:key|access)=([^&#\s]+)/);
+  if(m) return decodeURIComponent(m[1]).trim();
+  return s;
+}
+
+function keyFromUrl(){
+  var fromSearch = "";
+  try{
+    var p = new URLSearchParams(window.location.search);
+    fromSearch = p.get("k") || p.get("key") || p.get("access") || "";
+  }catch(e){}
+  if(fromSearch) return fromSearch.trim();
+  if(window.location.hash && window.location.hash.length > 1){
+    return extractKey(window.location.hash);
+  }
+  return "";
+}
+
+function sha256Hex(text){
+  var enc = new TextEncoder().encode(text);
+  return crypto.subtle.digest("SHA-256", enc).then(function(buf){
+    var bytes = new Uint8Array(buf), hex = "";
+    for(var i=0;i<bytes.length;i++){ hex += ("0"+bytes[i].toString(16)).slice(-2); }
+    return hex;
+  });
+}
+
+function unlock(key){
+  try{ sessionStorage.setItem(CONFIG.STORE_KEY, key); }catch(e){}
+  CONFIG.FILES.forEach(function(f){
+    var btn = document.getElementById(f.btn);
+    if(btn) btn.setAttribute("href", f.path);
+  });
+  showState("stateUnlocked");
+  try{
+    var url = new URL(window.location.href);
+    url.hash = "";
+    url.searchParams.set("k", key);
+    window.history.replaceState(null, "", url.toString());
+  }catch(e){}
+}
+
+function checkKey(key){
+  if(!key || !window.crypto || !crypto.subtle){
+    showState("stateLocked");
+    return;
+  }
+  sha256Hex(key).then(function(hex){
+    if(hex === CONFIG.ACCESS_HASH){ unlock(key); }
+    else{ showState("stateLocked"); }
+  }).catch(function(){ showState("stateLocked"); });
+}
+
+var initialKey = keyFromUrl();
+if(!initialKey){
+  try{ initialKey = sessionStorage.getItem(CONFIG.STORE_KEY) || ""; }catch(e){ initialKey = ""; }
+}
+if(initialKey){ checkKey(initialKey); } else { showState("stateLocked"); }
+
+document.getElementById("keyForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var val = extractKey(document.getElementById("keyInput").value);
+  var err = document.getElementById("keyErr");
+  err.classList.remove("on");
+  if(!val){ err.classList.add("on"); return; }
+  if(!window.crypto || !crypto.subtle){ err.classList.add("on"); return; }
+  sha256Hex(val).then(function(hex){
+    if(hex === CONFIG.ACCESS_HASH){ unlock(val); }
+    else{ err.classList.add("on"); }
+  }).catch(function(){ err.classList.add("on"); });
+});
+
+CONFIG.FILES.forEach(function(f){
+  var btn = document.getElementById(f.btn);
+  if(!btn) return;
+  btn.addEventListener("click", function(){
+    var n = document.getElementById(f.note);
+    if(n) n.classList.add("on");
+  });
+});
+
+// Show the PayPal order ID when the checkout sent one.
+(function(){
+  try{
+    var p = new URLSearchParams(window.location.search);
+    var order = p.get("order");
+    if(order){
+      document.getElementById("order-id").textContent = order;
+      document.getElementById("order-line").hidden = false;
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
