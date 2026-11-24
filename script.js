@@ -4,64 +4,25 @@
 
   var SETUP_NOTE = "Checkout is being set up — please check back shortly.";
   var ERROR_NOTE = "Payment didn't go through — please try again.";
-  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  /* ---- Buyer details: name + email only (digital product, no addresses) ---- */
-  function getBuyer(prefix) {
-    var nameEl = document.getElementById("buyer-name-" + prefix);
-    var emailEl = document.getElementById("buyer-email-" + prefix);
-    var errEl = document.getElementById("buyer-error-" + prefix);
-    var name = nameEl ? nameEl.value.trim() : "";
-    var email = emailEl ? emailEl.value.trim() : "";
-    if (!name || !EMAIL_RE.test(email)) {
-      if (errEl) { errEl.hidden = false; }
-      if (!name && nameEl) { nameEl.focus(); }
-      else if (emailEl) { emailEl.focus(); }
-      return null;
-    }
-    if (errEl) { errEl.hidden = true; }
-    return { name: name, email: email };
-  }
-
-  /* Soft read: return buyer only if name + valid email are present.
-     Never shows an error or steals focus — used by PayPal/Apple Pay so a
-     buyer can pay immediately and PayPal collects their details instead. */
-  function getBuyerSoft(prefix) {
-    var nameEl = document.getElementById("buyer-name-" + prefix);
-    var emailEl = document.getElementById("buyer-email-" + prefix);
-    var name = nameEl ? nameEl.value.trim() : "";
-    var email = emailEl ? emailEl.value.trim() : "";
-    if (!name || !EMAIL_RE.test(email)) { return null; }
-    return { name: name, email: email };
-  }
-
-  function splitName(full) {
-    var parts = full.trim().split(/\s+/);
-    return { given_name: parts[0], surname: parts.slice(1).join(" ") || parts[0] };
-  }
-
-  /* Digital goods: never ask for a shipping address. Prefill name + email
-     from our form so PayPal does not ask for them again. */
+  /* Prices + descriptions per checkout slot. PayPal collects the buyer's
+     name, email and card details in its own form — we ask for nothing. */
   var PRODUCTS = {
     hero: { price: "29.99", description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook" },
     pricing: { price: "29.99", description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook" },
     book2: { price: "24.99", description: "Naturally Craveable: The Everyday Weight Loss Kitchen — 60-recipe PDF ebook" }
   };
 
-  function buildOrder(buyer, prefix) {
+  /* Digital goods: never ask for a shipping address. */
+  function buildOrder(prefix) {
     var product = PRODUCTS[prefix] || PRODUCTS.pricing;
-    var order = {
+    return {
       application_context: { shipping_preference: "NO_SHIPPING" },
       purchase_units: [{
         description: product.description,
         amount: { currency_code: "USD", value: product.price }
       }]
     };
-    if (buyer) {
-      var n = splitName(buyer.name);
-      order.payer = { email_address: buyer.email, name: n };
-    }
-    return order;
   }
 
   /* ---- Shared success handling ---- */
@@ -97,11 +58,9 @@
     slot.appendChild(p);
   }
 
-  /* ---- PayPal / debit-card buttons ----
-     When our own card form is live (CardFields eligible), show only the
-     PayPal wallet button here. Otherwise show the standard buttons,
-     which include PayPal's own card form as a fallback. */
-  function renderPayPal(prefix, cardFormLive) {
+  /* ---- PayPal buttons (standard: PayPal + Pay Later + Debit/Credit Card) ----
+     The card button opens PayPal's own card form — no card details on our page. */
+  function renderPayPal(prefix) {
     var slot = document.getElementById("paypal-" + prefix);
     var successBox = document.getElementById("success-" + prefix);
     if (!slot) { return; }
@@ -110,12 +69,10 @@
       return;
     }
     try {
-      var config = {
+      window.paypal.Buttons({
         style: { layout: "vertical", color: "gold", shape: "pill", label: "buynow" },
-        /* No gate here: a buyer with an empty name/email form pays
-           straight through — PayPal collects their details. */
         createOrder: function (data, actions) {
-          return actions.order.create(buildOrder(getBuyerSoft(prefix), prefix));
+          return actions.order.create(buildOrder(prefix));
         },
         onApprove: function (data, actions) {
           return actions.order.capture().then(function (details) {
@@ -124,68 +81,9 @@
         },
         onCancel: function () { showError(slot, successBox); },
         onError: function () { showError(slot, successBox); }
-      };
-      if (cardFormLive && window.paypal.FUNDING && window.paypal.FUNDING.PAYPAL) {
-        config.fundingSource = window.paypal.FUNDING.PAYPAL;
-      }
-      window.paypal.Buttons(config).render("#paypal-" + prefix);
+      }).render("#paypal-" + prefix);
     } catch (e) {
       showSetupNote(slot);
-    }
-  }
-
-  /* ---- Our own short card form, powered by PayPal CardFields ----
-     PayPal's own card form cannot be shortened — it always asks for billing
-     address, mobile and ship-to. CardFields lets us render just number /
-     expiry / CVV on our page (PayPal hosts the fields, so no card data ever
-     touches our code). Billing address is optional and we do not collect it.
-     Only renders when the PayPal account is approved for Advanced Credit
-     and Debit Card Payments; otherwise the standard PayPal buttons above
-     stay as the card fallback. */
-  function renderCardFields(prefix) {
-    var block = document.getElementById("card-fields-" + prefix);
-    var payBtn = document.getElementById("card-pay-" + prefix);
-    var errEl = document.getElementById("card-error-" + prefix);
-    if (!block || !payBtn) { return false; }
-    if (typeof window.paypal === "undefined" || !window.paypal.CardFields) {
-      return false;
-    }
-    try {
-      var cardFields = window.paypal.CardFields({
-        createOrder: function (data, actions) {
-          return actions.order.create(buildOrder(getBuyer(prefix), prefix));
-        },
-        onApprove: function (data, actions) {
-          return actions.order.capture().then(function (details) {
-            if (details && details.status === "COMPLETED") {
-              showSuccess(prefix, ["paypal-" + prefix, "applepay-" + prefix], details, data.orderID);
-            } else {
-              if (errEl) { errEl.hidden = false; }
-            }
-          });
-        }
-      });
-      if (!cardFields.isEligible()) { return false; }
-      var style = { input: { "font-size": "16px", "font-family": "inherit", color: "#1e3d2b" } };
-      cardFields.NumberField({ style: style, placeholder: "Card number" }).render("#card-number-" + prefix);
-      cardFields.ExpiryField({ style: style, placeholder: "MM / YY" }).render("#card-expiry-" + prefix);
-      cardFields.CVVField({ style: style, placeholder: "CVV" }).render("#card-cvv-" + prefix);
-      block.hidden = false;
-      payBtn.addEventListener("click", function () {
-        var buyer = getBuyer(prefix);
-        if (!buyer) { return; }
-        if (errEl) { errEl.hidden = true; }
-        payBtn.disabled = true;
-        cardFields.submit({ cardholderName: buyer.name }).then(function () {
-          payBtn.disabled = false;
-        }).catch(function () {
-          payBtn.disabled = false;
-          if (errEl) { errEl.hidden = false; }
-        });
-      });
-      return true;
-    } catch (e) {
-      return false;
     }
   }
 
@@ -213,7 +111,7 @@
           style: { color: "black", shape: "rect", label: "buynow" },
           paymentRequest: { applepay: { requiredShippingContactFields: [] } },
           createOrder: function (data, actions) {
-            return actions.order.create(buildOrder(getBuyerSoft(prefix), prefix));
+            return actions.order.create(buildOrder(prefix));
           },
           onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
@@ -272,15 +170,12 @@
         showSetupNote(document.getElementById("paypal-book2"));
         return;
       }
-      var cardHero = renderCardFields("hero");
-      var cardPricing = renderCardFields("pricing");
-      var cardBook2 = renderCardFields("book2");
       renderApplePay("hero");
-      renderPayPal("hero", cardHero);
+      renderPayPal("hero");
       renderApplePay("pricing");
-      renderPayPal("pricing", cardPricing);
+      renderPayPal("pricing");
       renderApplePay("book2");
-      renderPayPal("book2", cardBook2);
+      renderPayPal("book2");
     });
   });
 })();
