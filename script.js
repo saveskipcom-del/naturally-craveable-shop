@@ -42,12 +42,19 @@
 
   /* Digital goods: never ask for a shipping address. Prefill name + email
      from our form so PayPal does not ask for them again. */
-  function buildOrder(buyer) {
+  var PRODUCTS = {
+    hero: { price: "29.99", description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook" },
+    pricing: { price: "29.99", description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook" },
+    book2: { price: "24.99", description: "Naturally Craveable: The Everyday Weight Loss Kitchen — 60-recipe PDF ebook" }
+  };
+
+  function buildOrder(buyer, prefix) {
+    var product = PRODUCTS[prefix] || PRODUCTS.pricing;
     var order = {
       application_context: { shipping_preference: "NO_SHIPPING" },
       purchase_units: [{
-        description: "Naturally Craveable: Healthy Cravings — 120-recipe PDF ebook",
-        amount: { currency_code: "USD", value: "29.99" }
+        description: product.description,
+        amount: { currency_code: "USD", value: product.price }
       }]
     };
     if (buyer) {
@@ -108,7 +115,7 @@
         /* No gate here: a buyer with an empty name/email form pays
            straight through — PayPal collects their details. */
         createOrder: function (data, actions) {
-          return actions.order.create(buildOrder(getBuyerSoft(prefix)));
+          return actions.order.create(buildOrder(getBuyerSoft(prefix), prefix));
         },
         onApprove: function (data, actions) {
           return actions.order.capture().then(function (details) {
@@ -146,7 +153,7 @@
     try {
       var cardFields = window.paypal.CardFields({
         createOrder: function (data, actions) {
-          return actions.order.create(buildOrder(getBuyer(prefix)));
+          return actions.order.create(buildOrder(getBuyer(prefix), prefix));
         },
         onApprove: function (data, actions) {
           return actions.order.capture().then(function (details) {
@@ -206,7 +213,7 @@
           style: { color: "black", shape: "rect", label: "buynow" },
           paymentRequest: { applepay: { requiredShippingContactFields: [] } },
           createOrder: function (data, actions) {
-            return actions.order.create(buildOrder(getBuyerSoft(prefix)));
+            return actions.order.create(buildOrder(getBuyerSoft(prefix), prefix));
           },
           onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
@@ -262,14 +269,18 @@
       if (!ok) {
         showSetupNote(document.getElementById("paypal-hero"));
         showSetupNote(document.getElementById("paypal-pricing"));
+        showSetupNote(document.getElementById("paypal-book2"));
         return;
       }
       var cardHero = renderCardFields("hero");
       var cardPricing = renderCardFields("pricing");
+      var cardBook2 = renderCardFields("book2");
       renderApplePay("hero");
       renderPayPal("hero", cardHero);
       renderApplePay("pricing");
       renderPayPal("pricing", cardPricing);
+      renderApplePay("book2");
+      renderPayPal("book2", cardBook2);
     });
   });
 })();
