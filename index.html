@@ -215,21 +215,29 @@
         </article>
 
         <article class="price-card bundle">
-          <p class="card-tag soon">Coming soon</p>
+          <p class="card-tag">Best value</p>
           <h3>Complete Kitchen — all 3 books</h3>
           <p class="card-sub">Healthy Cravings + The Everyday Weight Loss Kitchen + Gut &amp; Debloat Reset. The whole Naturally Craveable kitchen in one bundle.</p>
-          <p class="card-price"><span class="price">Coming soon</span></p>
+          <p class="card-price"><span class="price">$49.99</span> <s>$84.97</s> <span class="price-note">save $34.98</span></p>
           <ul class="card-list">
             <li>240 recipes across 3 books</li>
             <li>Desserts, weight-loss meals &amp; gut reset</li>
             <li>One purchase, all three PDFs</li>
+            <li>Instant PDF download</li>
+            <li>30-day money-back guarantee</li>
           </ul>
-          <form class="notify-form" data-book="Complete Kitchen bundle">
-            <label class="sr-only" for="email-b">Email for bundle launch notice</label>
-            <input type="email" id="email-b" placeholder="Your email" required>
-            <button class="btn" type="submit">Notify me</button>
-          </form>
-          <p class="notify-done" hidden>You're on the list — we'll email you the moment it launches.</p>
+          <div class="applepay-slot" id="applepay-bundle" aria-live="polite"></div>
+          <p class="pay-divider" id="divider-bundle" hidden><span>or pay with PayPal / card</span></p>
+          <div class="paypal-slot" id="paypal-bundle" aria-live="polite"></div>
+          <div class="success-box" id="success-bundle" hidden>
+            <p class="success-title">Payment complete — thank you!</p>
+            <p>Order ID: <span class="order-id"></span></p>
+            <a class="btn btn-big" href="assets/Naturally-Craveable-Healthy-Cravings.pdf" download>Download Book 1 — Healthy Cravings</a>
+            <a class="btn btn-big" href="assets/Naturally-Craveable-The-Everyday-Weight-Loss-Kitchen.pdf" download>Download Book 2 — Weight Loss Kitchen</a>
+            <a class="btn btn-big" href="assets/Naturally-Craveable-Gut-Debloat-Reset.pdf" download>Download Book 3 — Gut &amp; Debloat Reset</a>
+            <p class="success-note">Your download links are on this page — save all three PDFs now.</p>
+          </div>
+          <p class="trust">Instant PDF download · PayPal secure checkout</p>
         </article>
 
       </div>
@@ -308,6 +316,6 @@
 </footer>
 
 <div id="paypal-sdk-url" data-url="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD&amp;components=buttons,applepay" hidden></div>
-<script src="script.js?v=6"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>
