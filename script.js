@@ -66,6 +66,8 @@
     var slot = document.getElementById("paypal-" + prefix);
     var successBox = document.getElementById("success-" + prefix);
     if (!slot) { return; }
+    var oldNote = slot.querySelector(".setup-note");
+    if (oldNote) { oldNote.remove(); }
     if (typeof window.paypal === "undefined" || !window.paypal.Buttons) {
       showSetupNote(slot);
       return;
@@ -150,21 +152,58 @@
     observer.observe(heroCheckout);
   }
 
-  /* ---- Load the PayPal SDK after the page renders ----
-     The SDK (~100 KB) used to be a static script tag that blocked the page
-     from becoming interactive. Now we load it async once the DOM is ready,
-     so the page paints first and checkout appears a moment later. */
+  /* ---- Load the PayPal SDK ----
+     The SDK (~100 KB) now starts downloading the moment the page starts
+     loading (async <script> in <head>) instead of waiting for the DOM, so
+     checkout can appear much sooner. This loader only waits for it: if the
+     head script is still loading we attach to it; if it never arrives we
+     inject it once from the #paypal-sdk-url holder as a fallback. */
   function loadPayPalSDK(done) {
-    if (typeof window.paypal !== "undefined" && window.paypal.Buttons) { done(true); return; }
+    var called = false;
+    function finish(ok) { if (!called) { called = true; done(ok); } }
+    if (typeof window.paypal !== "undefined" && window.paypal.Buttons) { finish(true); return; }
     var holder = document.getElementById("paypal-sdk-url");
     var url = holder ? holder.getAttribute("data-url") : null;
-    if (!url) { done(false); return; }
+    if (!url) { finish(false); return; }
+    var existing = document.querySelector('script[src*="paypal.com/sdk/js"]');
+    if (existing) {
+      existing.addEventListener("load", function () { finish(true); });
+      existing.addEventListener("error", function () { finish(false); });
+      setTimeout(function () { finish(false); }, 15000);
+      return;
+    }
     var s = document.createElement("script");
     s.src = url;
     s.async = true;
-    s.onload = function () { done(true); };
-    s.onerror = function () { done(false); };
+    s.onload = function () { finish(true); };
+    s.onerror = function () { finish(false); };
     document.head.appendChild(s);
+    setTimeout(function () { finish(false); }, 15000);
+  }
+
+  /* ---- Render the below-fold checkouts only when scrolled near ----
+     The hero checkout renders the moment the SDK is ready; the other four
+     render when their card comes within 600px of the viewport, so the page
+     does not spend its first seconds building five PayPal button sets at
+     once. Falls back to rendering everything if IntersectionObserver is
+     unavailable. */
+  function renderLazyCheckouts(prefixes) {
+    if (!("IntersectionObserver" in window)) {
+      prefixes.forEach(function (p) { renderApplePay(p); renderPayPal(p); });
+      return;
+    }
+    prefixes.forEach(function (prefix) {
+      var slot = document.getElementById("paypal-" + prefix);
+      if (!slot) { return; }
+      var observer = new IntersectionObserver(function (entries, obs) {
+        if (entries[0].isIntersecting) {
+          obs.disconnect();
+          renderApplePay(prefix);
+          renderPayPal(prefix);
+        }
+      }, { rootMargin: "600px 0px" });
+      observer.observe(slot);
+    });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -180,14 +219,7 @@
       }
       renderApplePay("hero");
       renderPayPal("hero");
-      renderApplePay("pricing");
-      renderPayPal("pricing");
-      renderApplePay("book2");
-      renderPayPal("book2");
-      renderApplePay("book3");
-      renderPayPal("book3");
-      renderApplePay("bundle");
-      renderPayPal("bundle");
+      renderLazyCheckouts(["pricing", "book2", "book3", "bundle"]);
     });
   });
 })();
