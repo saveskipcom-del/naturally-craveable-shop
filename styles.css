@@ -81,9 +81,8 @@ img { max-width: 100%; height: auto; display: block; }
 /* Nav */
 .nav {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(250, 245, 236, .96);
+  background: #faf5ec;
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(4px);
 }
 .nav-inner {
   display: flex; align-items: center; gap: 1.5rem;
