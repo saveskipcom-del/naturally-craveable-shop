@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1e3d2b">
 <title>Naturally Craveable: Healthy Cravings — 120 Recipes, Zero Refined Sugar, Every Dessert Under 250 Calories</title>
 <meta name="description" content="Naturally Craveable: Healthy Cravings — 120 original recipes for desserts, breakfasts, dinners & drinks. Zero refined sugar. Every dessert under 250 calories. Instant PDF download, 30-day money-back guarantee.">
 <link rel="canonical" href="https://craveable.click/">
@@ -20,7 +21,8 @@
 <meta name="twitter:image" content="https://craveable.click/assets/cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://www.paypal.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="assets/cover.png">
 </head>
@@ -56,8 +58,9 @@
         <p class="price-line"><span class="price">$29.99</span> <s class="list-price">$39.99</s> <span class="price-note">launch price</span></p>
         <div class="applepay-slot" id="applepay-hero" aria-live="polite"></div>
         <p class="pay-divider" id="divider-hero" hidden><span>or pay with PayPal / card</span></p>
+        <div class="paypal-slot" id="paypal-hero" aria-live="polite"></div>
         <form class="buyer-form" id="buyer-hero" novalidate>
-          <p class="buyer-title">Your details — just name &amp; email</p>
+          <p class="buyer-title">Paying by card? Add your name &amp; email first</p>
           <input type="text" id="buyer-name-hero" placeholder="Your name" autocomplete="name">
           <input type="email" id="buyer-email-hero" placeholder="Your email" autocomplete="email">
           <p class="buyer-error" id="buyer-error-hero" hidden>Please add your name and a valid email — that's all we need.</p>
@@ -72,7 +75,6 @@
           <button type="button" class="btn btn-big card-pay-btn" id="card-pay-hero">Pay $29.99</button>
           <p class="buyer-error" id="card-error-hero" hidden>Payment didn't go through — please check your card details and try again.</p>
         </div>
-        <div class="paypal-slot" id="paypal-hero" aria-live="polite"></div>
         <div class="success-box" id="success-hero" hidden>
           <p class="success-title">Payment complete — thank you!</p>
           <p>Order ID: <span class="order-id"></span></p>
@@ -82,7 +84,7 @@
         <p class="trust">Instant PDF download · 30-day money-back guarantee · PayPal secure checkout</p>
       </div>
       <div class="hero-art">
-        <img src="assets/cover.png" alt="Cover of Naturally Craveable: Healthy Cravings — chocolate layer cake with a strawberry, 120 recipes, 0 refined sugar" width="900" height="1350" fetchpriority="high">
+        <img src="assets/cover-900.jpg" srcset="assets/cover-480.jpg 480w, assets/cover-900.jpg 900w" sizes="(max-width: 860px) 420px, 900px" alt="Cover of Naturally Craveable: Healthy Cravings — chocolate layer cake with a strawberry, 120 recipes, 0 refined sugar" width="900" height="1350" fetchpriority="high">
       </div>
     </div>
   </section>
@@ -168,8 +170,9 @@
           </ul>
           <div class="applepay-slot" id="applepay-pricing" aria-live="polite"></div>
           <p class="pay-divider" id="divider-pricing" hidden><span>or pay with PayPal / card</span></p>
+          <div class="paypal-slot" id="paypal-pricing" aria-live="polite"></div>
           <form class="buyer-form" id="buyer-pricing" novalidate>
-            <p class="buyer-title">Your details — just name &amp; email</p>
+            <p class="buyer-title">Paying by card? Add your name &amp; email first</p>
             <input type="text" id="buyer-name-pricing" placeholder="Your name" autocomplete="name">
             <input type="email" id="buyer-email-pricing" placeholder="Your email" autocomplete="email">
             <p class="buyer-error" id="buyer-error-pricing" hidden>Please add your name and a valid email — that's all we need.</p>
@@ -184,7 +187,6 @@
             <button type="button" class="btn btn-big card-pay-btn" id="card-pay-pricing">Pay $29.99</button>
             <p class="buyer-error" id="card-error-pricing" hidden>Payment didn't go through — please check your card details and try again.</p>
           </div>
-          <div class="paypal-slot" id="paypal-pricing" aria-live="polite"></div>
           <div class="success-box" id="success-pricing" hidden>
             <p class="success-title">Payment complete — thank you!</p>
             <p>Order ID: <span class="order-id"></span></p>
@@ -325,7 +327,7 @@
   </div>
 </footer>
 
-<script src="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD&amp;components=buttons,card-fields,applepay"></script>
-<script src="script.js?v=2"></script>
+<div id="paypal-sdk-url" data-url="https://www.paypal.com/sdk/js?client-id=BAAPoSVz1MjgN_dKv3t3LEqXkyem7L8qxiM4EkSEGVcG385pg576ArgxxH5-UR0DdDZ7Cac60FDsAKyMkg&amp;currency=USD&amp;components=buttons,card-fields,applepay" hidden></div>
+<script src="script.js?v=3"></script>
 </body>
 </html>
