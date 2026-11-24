@@ -23,6 +23,18 @@
     return { name: name, email: email };
   }
 
+  /* Soft read: return buyer only if name + valid email are present.
+     Never shows an error or steals focus — used by PayPal/Apple Pay so a
+     buyer can pay immediately and PayPal collects their details instead. */
+  function getBuyerSoft(prefix) {
+    var nameEl = document.getElementById("buyer-name-" + prefix);
+    var emailEl = document.getElementById("buyer-email-" + prefix);
+    var name = nameEl ? nameEl.value.trim() : "";
+    var email = emailEl ? emailEl.value.trim() : "";
+    if (!name || !EMAIL_RE.test(email)) { return null; }
+    return { name: name, email: email };
+  }
+
   function splitName(full) {
     var parts = full.trim().split(/\s+/);
     return { given_name: parts[0], surname: parts.slice(1).join(" ") || parts[0] };
@@ -93,12 +105,10 @@
     try {
       var config = {
         style: { layout: "vertical", color: "gold", shape: "pill", label: "buynow" },
-        onClick: function (data, actions) {
-          if (!getBuyer(prefix)) { return actions.reject(); }
-          return actions.resolve();
-        },
+        /* No gate here: a buyer with an empty name/email form pays
+           straight through — PayPal collects their details. */
         createOrder: function (data, actions) {
-          return actions.order.create(buildOrder(getBuyer(prefix)));
+          return actions.order.create(buildOrder(getBuyerSoft(prefix)));
         },
         onApprove: function (data, actions) {
           return actions.order.capture().then(function (details) {
@@ -196,7 +206,7 @@
           style: { color: "black", shape: "rect", label: "buynow" },
           paymentRequest: { applepay: { requiredShippingContactFields: [] } },
           createOrder: function (data, actions) {
-            return actions.order.create(buildOrder(getBuyer(prefix)));
+            return actions.order.create(buildOrder(getBuyerSoft(prefix)));
           },
           onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
@@ -229,13 +239,37 @@
     });
   }
 
+  /* ---- Load the PayPal SDK after the page renders ----
+     The SDK (~100 KB) used to be a static script tag that blocked the page
+     from becoming interactive. Now we load it async once the DOM is ready,
+     so the page paints first and checkout appears a moment later. */
+  function loadPayPalSDK(done) {
+    if (typeof window.paypal !== "undefined" && window.paypal.Buttons) { done(true); return; }
+    var holder = document.getElementById("paypal-sdk-url");
+    var url = holder ? holder.getAttribute("data-url") : null;
+    if (!url) { done(false); return; }
+    var s = document.createElement("script");
+    s.src = url;
+    s.async = true;
+    s.onload = function () { done(true); };
+    s.onerror = function () { done(false); };
+    document.head.appendChild(s);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
-    var cardHero = renderCardFields("hero");
-    var cardPricing = renderCardFields("pricing");
-    renderApplePay("hero");
-    renderPayPal("hero", cardHero);
-    renderApplePay("pricing");
-    renderPayPal("pricing", cardPricing);
     initNotifyForms();
+    loadPayPalSDK(function (ok) {
+      if (!ok) {
+        showSetupNote(document.getElementById("paypal-hero"));
+        showSetupNote(document.getElementById("paypal-pricing"));
+        return;
+      }
+      var cardHero = renderCardFields("hero");
+      var cardPricing = renderCardFields("pricing");
+      renderApplePay("hero");
+      renderPayPal("hero", cardHero);
+      renderApplePay("pricing");
+      renderPayPal("pricing", cardPricing);
+    });
   });
 })();
