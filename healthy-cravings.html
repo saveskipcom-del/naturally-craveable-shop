@@ -4,7 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELWDRG4J22"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELWDRG4J22">
+const revSlides=document.querySelectorAll('.review-slide');
+const revDots=document.getElementById('revDots');
+let revIndex=0,revTimer=null;
+revSlides.forEach((_,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Go to review '+(i+1));b.addEventListener('click',()=>{revShow(i);revRestart();});revDots.appendChild(b);});
+const revDotBtns=revDots.querySelectorAll('button');
+function revShow(i){revIndex=(i+revSlides.length)%revSlides.length;revSlides.forEach((s,j)=>s.classList.toggle('active',j===revIndex));revDotBtns.forEach((b,j)=>b.classList.toggle('active',j===revIndex));}
+function revRestart(){clearInterval(revTimer);revTimer=setInterval(()=>revShow(revIndex+1),6000);}
+document.getElementById('revPrev').addEventListener('click',()=>{revShow(revIndex-1);revRestart();});
+document.getElementById('revNext').addEventListener('click',()=>{revShow(revIndex+1);revRestart();});
+document.getElementById('reviewCarousel').addEventListener('mouseenter',()=>clearInterval(revTimer));
+document.getElementById('reviewCarousel').addEventListener('mouseleave',revRestart);
+revShow(0);revRestart();
+</script>
 <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ELWDRG4J22');</script>
 <meta name="theme-color" content="#315d45">
 <title>Healthy Cravings — 120 Recipes with Zero Refined Sugar | Naturally Craveable</title>
@@ -67,11 +80,21 @@ section{padding:88px 0}.section-head{text-align:center;max-width:690px;margin:0 
 .review-summary .stars{color:#e9a319;font-size:22px;letter-spacing:3px}
 .review-summary strong{font-size:20px}
 .review-summary span{color:var(--muted);font-size:13px}
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.review{background:#fffdf8;border:1px solid var(--line);padding:27px;border-radius:20px}
-.review .stars{color:#e9a319;font-size:15px;letter-spacing:2px;margin-bottom:12px}
-.review h3{font-family:Georgia,serif;font-size:20px;font-weight:500;margin-bottom:8px}
-.review p{color:var(--muted);font-size:13px;margin:0}
+.carousel{max-width:780px;margin:auto}
+.review-viewport{position:relative}
+.review-slide{display:none;background:#fffdf8;border:1px solid var(--line);border-radius:24px;padding:38px 42px;box-shadow:var(--shadow)}
+.review-slide.active{display:block}
+.review-top{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.review-avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 72px;border:3px solid var(--sage)}
+.review-slide .stars{color:#e9a319;font-size:17px;letter-spacing:3px}
+.review-quote{font-family:Georgia,serif;font-size:clamp(24px,3vw,32px);line-height:1.2;letter-spacing:-.02em;font-weight:500;margin:0 0 14px}
+.review-slide p{color:var(--muted);font-size:15px;line-height:1.7;margin:0}
+.carousel-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:26px}
+.carousel-arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:#fffdf8;color:var(--green);font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;flex:0 0 48px}
+.carousel-arrow:hover{background:var(--sage)}
+.carousel-dots{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;max-width:320px}
+.carousel-dots button{width:9px;height:9px;border-radius:99px;border:0;background:#cfd6c9;cursor:pointer;padding:0}
+.carousel-dots button.active{width:26px;background:var(--green)}
 .books{background:#f2f0e8}.book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.product{background:#fffdf8;border:1px solid var(--line);border-radius:22px;padding:20px;display:flex;flex-direction:column}.cover{height:300px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;overflow:hidden;position:relative;background:#efe2d5}.cover img{width:100%;height:100%;object-fit:contain;display:block}.cover.c2{background:#e1e8dc}.cover.c3{background:#f1e5d7}
 .product h3{font-family:Georgia,serif;font-size:25px;line-height:1.08;font-weight:500;margin:0 0 8px}.meta{font-size:11px;color:var(--green2);font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}.product p{color:var(--muted);font-size:13px;min-height:60px}.product ul{padding-left:18px;color:#56645a;font-size:12px;line-height:1.9;margin:0 0 18px}.product-bottom{margin-top:auto;border-top:1px solid var(--line);padding-top:15px}.product-bottom .price-row{display:flex;align-items:baseline;gap:9px}.product-bottom strong{font-size:22px}.product-bottom del{color:#899188;font-size:14px}
 .included-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}.included-art{min-height:0;aspect-ratio:2/3;max-width:400px;width:100%;margin-inline:auto;border-radius:28px;overflow:hidden;position:relative}.included-art img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
@@ -91,7 +114,8 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
  .hero{padding:48px 0 38px}.hero-grid{grid-template-columns:minmax(0,1fr);gap:6px}.hero-copy{text-align:center}.hero-copy>p{font-size:15px;margin-inline:auto}.hero h1{font-size:46px}.hero-proof{justify-content:center;gap:10px}.hero-actions{justify-content:center}.hero-actions .btn{width:100%}.price-line{justify-content:center}.book-stage{min-height:315px;margin-top:0}.stage-blob{width:280px!important;height:280px!important;right:auto!important;top:0!important}.stage-book{width:130px;margin:0 -12px}.stage-book.b1{width:142px}.stage-book.b2{transform:rotate(-12deg) translate(18px,16px)}.stage-book.b3{transform:rotate(12deg) translate(-18px,20px)}.book-stage .stage-note{bottom:0;right:2px;font-size:10px}
  .single-stage{min-height:380px;margin-top:0}.single-stage img{width:220px}.single-stage .stage-blob{width:300px!important;height:300px!important;right:auto!important;top:0!important}.single-stage .stage-note{bottom:0;right:2px;font-size:10px;z-index:3}
  .stats-grid{grid-template-columns:repeat(2,1fr);row-gap:17px;padding:22px 0}.stat:nth-child(2){border:0}.stat strong{font-size:25px}
- section{padding:62px 0}.section-head{margin-bottom:28px}.section-head h2{font-size:36px}.for-grid{grid-template-columns:1fr}.benefit-grid,.book-grid,.steps,.review-grid{grid-template-columns:1fr}.benefit{padding:22px}.product{padding:17px}.cover{height:260px}.product p{min-height:0}
+ section{padding:62px 0}.section-head{margin-bottom:28px}.section-head h2{font-size:36px}.for-grid{grid-template-columns:1fr}.benefit-grid,.book-grid,.steps{grid-template-columns:1fr}
+ .review-slide{padding:26px 22px}.review-avatar{width:56px;height:56px;flex-basis:56px}.carousel-arrow{width:42px;height:42px;flex-basis:42px}.benefit{padding:22px}.product{padding:17px}.cover{height:260px}.product p{min-height:0}
  .included-grid{grid-template-columns:1fr;gap:28px}.included-art{min-height:0;max-width:340px}.included-copy h2{font-size:36px}
  .preview-grid{grid-template-columns:1fr 1fr;gap:10px}.preview-grid.two{grid-template-columns:1fr 1fr}.preview-img{height:220px}.preview-card h3{font-size:17px;margin:11px 11px 2px}.preview-card p{margin:0 11px 12px;font-size:10px}
  .bundle-card{grid-template-columns:1fr;padding:17px;gap:20px}.bundle-visual{min-height:235px}.bundle-visual img{width:112px}.bundle-visual.single img{width:170px}.bundle-copy{padding:0 5px 8px}.bundle-copy h2{font-size:32px}
@@ -204,28 +228,31 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
   <div class="section-head"><div class="eyebrow">Reader favorites</div><h2>Loved by home cooks.</h2><p>21 five-star reviews from readers of Healthy Cravings.</p>
    <div class="review-summary"><span class="stars">★★★★★</span><strong>5.0 out of 5</strong><span>· 21 reader reviews</span></div>
   </div>
-  <div class="review-grid">
-   <article class="review"><div class="stars">★★★★★</div><h3>Finally, a Healthier Sweet Treat!</h3><p>I love that I can enjoy delicious desserts without refined sugar. So many lovely recipes in one book!</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>My New Favourite Cookbook</h3><p>Beautiful recipes, easy instructions and plenty of inspiration. I've already found several favourites!</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Surprisingly Delicious!</h3><p>I wasn't expecting healthy desserts to taste this good. The recipes are simple and absolutely worth trying.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Perfect for Everyday Cooking</h3><p>Love the variety! There's something for breakfast, dessert and even dinner.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Absolutely Worth It</h3><p>Really impressed with the number of recipes and how easy they are to follow.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Chocolate Lovers, You'll Love This!</h3><p>Finally, some delicious chocolate treats that fit into my healthier eating habits.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>So Many Great Ideas</h3><p>I was getting bored with my usual meals. This cookbook has given me so many new ideas to try.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Easy and Delicious</h3><p>The instructions are straightforward, the ingredients are easy to understand, and the results are lovely.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>A Lovely Collection</h3><p>There's a great mix of recipes here. I especially appreciate having breakfast and dessert ideas together.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>My Family Loves These Recipes</h3><p>I've tried a few recipes with my family, and everyone enjoyed them.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Beautifully Put Together</h3><p>The photos are gorgeous, and the recipes are organised really well.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Great for Sweet Cravings</h3><p>This is exactly what I was looking for. Delicious ideas for when I fancy something sweet.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>More Than Just Desserts</h3><p>I expected a dessert book, but the breakfast and dinner ideas are a lovely bonus.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Simple Ingredients, Lovely Results</h3><p>I appreciate recipes that don't require complicated ingredients.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>A Great Kitchen Companion</h3><p>I've been looking for fresh inspiration, and this book has delivered.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Love the Breakfast Ideas</h3><p>The breakfast recipes are my favourite part.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Definitely Recommend</h3><p>An enjoyable cookbook with plenty of variety.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Perfect for Busy Days</h3><p>Some really convenient ideas for everyday meals and treats.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Delicious Without Refined Sugar</h3><p>I love the focus on naturally sweet ingredients.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>Worth Having</h3><p>Lots of inspiration, lovely photographs and easy-to-follow recipes.</p></article>
-   <article class="review"><div class="stars">★★★★★</div><h3>A Lovely Purchase</h3><p>Really enjoying exploring this cookbook. It's given me fresh ideas.</p></article>
+  <div class="carousel" id="reviewCarousel">
+   <div class="review-viewport">
+   <article class="review-slide active"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-01.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Finally, a Healthier Sweet Treat!&rdquo;</h3><p>I love that I can enjoy delicious desserts without refined sugar. So many lovely recipes in one book!</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-02.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;My New Favourite Cookbook&rdquo;</h3><p>Beautiful recipes, easy instructions and plenty of inspiration. I've already found several favourites!</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-03.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Surprisingly Delicious!&rdquo;</h3><p>I wasn't expecting healthy desserts to taste this good. The recipes are simple and absolutely worth trying.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-04.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Perfect for Everyday Cooking&rdquo;</h3><p>Love the variety! There's something for breakfast, dessert and even dinner.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-05.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Absolutely Worth It&rdquo;</h3><p>Really impressed with the number of recipes and how easy they are to follow.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-06.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Chocolate Lovers, You'll Love This!&rdquo;</h3><p>Finally, some delicious chocolate treats that fit into my healthier eating habits.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-07.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;So Many Great Ideas&rdquo;</h3><p>I was getting bored with my usual meals. This cookbook has given me so many new ideas to try.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-08.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Easy and Delicious&rdquo;</h3><p>The instructions are straightforward, the ingredients are easy to understand, and the results are lovely.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-09.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;A Lovely Collection&rdquo;</h3><p>There's a great mix of recipes here. I especially appreciate having breakfast and dessert ideas together.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-10.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;My Family Loves These Recipes&rdquo;</h3><p>I've tried a few recipes with my family, and everyone enjoyed them.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-11.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Beautifully Put Together&rdquo;</h3><p>The photos are gorgeous, and the recipes are organised really well.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-12.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Great for Sweet Cravings&rdquo;</h3><p>This is exactly what I was looking for. Delicious ideas for when I fancy something sweet.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-13.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;More Than Just Desserts&rdquo;</h3><p>I expected a dessert book, but the breakfast and dinner ideas are a lovely bonus.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-14.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Simple Ingredients, Lovely Results&rdquo;</h3><p>I appreciate recipes that don't require complicated ingredients.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-15.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;A Great Kitchen Companion&rdquo;</h3><p>I've been looking for fresh inspiration, and this book has delivered.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-16.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Love the Breakfast Ideas&rdquo;</h3><p>The breakfast recipes are my favourite part.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-17.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Definitely Recommend&rdquo;</h3><p>An enjoyable cookbook with plenty of variety.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-18.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Perfect for Busy Days&rdquo;</h3><p>Some really convenient ideas for everyday meals and treats.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-19.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Delicious Without Refined Sugar&rdquo;</h3><p>I love the focus on naturally sweet ingredients.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-20.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;Worth Having&rdquo;</h3><p>Lots of inspiration, lovely photographs and easy-to-follow recipes.</p></article>
+   <article class="review-slide"><div class="review-top"><img class="review-avatar" src="assets/reviews/avatar-21.jpg" alt="Reader of Healthy Cravings" loading="lazy"><div class="stars">★★★★★</div></div><h3 class="review-quote">&ldquo;A Lovely Purchase&rdquo;</h3><p>Really enjoying exploring this cookbook. It's given me fresh ideas.</p></article>
+   </div>
+   <div class="carousel-nav"><button class="carousel-arrow" id="revPrev" aria-label="Previous review">&lsaquo;</button><div class="carousel-dots" id="revDots"></div><button class="carousel-arrow" id="revNext" aria-label="Next review">&rsaquo;</button></div>
   </div>
  </div>
 </section>
