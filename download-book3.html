@@ -239,6 +239,6 @@ CONFIG.FILES.forEach(function(f){
   }catch(e){}
 })();
 </script>
-<script>/* Black Friday countdown: ends 2026-11-26 21:00 IST */(function(){var end=new Date("2026-11-26T21:00:00+05:30").getTime();function p(n){return String(n).padStart(2,"0");}function tick(){var d=end-Date.now();var h=0,m=0,s=0;if(d>0){h=Math.floor(d/36e5);m=Math.floor(d%36e5/6e4);s=Math.floor(d%6e4/1e3);}var v=p(h)+":"+p(m)+":"+p(s);document.querySelectorAll(".cd").forEach(function(e){e.textContent=v;});document.querySelectorAll(".cd-h").forEach(function(e){e.textContent=p(h);});document.querySelectorAll(".cd-m").forEach(function(e){e.textContent=p(m);});document.querySelectorAll(".cd-s").forEach(function(e){e.textContent=p(s);});}tick();setInterval(tick,1000);})();</script>
+<script>/* Black Friday countdown: 12h per visitor (localStorage bf_end; resets when expired) */(function(){var K="bf_end",end=0;try{end=+localStorage.getItem(K)||0;}catch(e){}if(!end||end<Date.now()){end=Date.now()+12*36e5;try{localStorage.setItem(K,String(end));}catch(e){}}function p(n){return String(n).padStart(2,"0");}function tick(){var d=end-Date.now();var h=0,m=0,s=0;if(d>0){h=Math.floor(d/36e5);m=Math.floor(d%36e5/6e4);s=Math.floor(d%6e4/1e3);}var v=p(h)+":"+p(m)+":"+p(s);document.querySelectorAll(".cd").forEach(function(e){e.textContent=v;});document.querySelectorAll(".cd-t").forEach(function(e){e.textContent=v;});}tick();setInterval(tick,1000);})();</script>
 </body>
 </html>
