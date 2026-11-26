@@ -66,6 +66,26 @@ section{padding:88px 0}.section-head{text-align:center;max-width:690px;margin:0 
 .included-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}.included-art{min-height:0;aspect-ratio:2/3;max-width:400px;width:100%;margin-inline:auto;border-radius:28px;overflow:hidden;position:relative}.included-art img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
 .included-copy h2{font-size:43px;line-height:1.05;margin:12px 0 17px}.included-copy>p{color:var(--muted);font-size:14px}.checklist{list-style:none;padding:0;margin:22px 0}.checklist li{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;color:#4e5f53}.checklist li:before{content:"✓";color:var(--green2);font-weight:900;margin-right:11px}
 .preview{background:#fffdf8}.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.preview-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--cream)}.preview-img{height:360px;overflow:hidden}.preview-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}.preview-card h3{font-family:Georgia,serif;font-size:20px;font-weight:500;margin:14px 16px 3px}.preview-card p{font-size:11px;color:var(--muted);margin:0 16px 16px}
+.gallery-sec{background:#f6f1e6}
+.gallery-img{height:280px}
+.gallery-img img{object-position:center}
+.preview-card .macro{font-size:12px;font-weight:700;color:var(--green);margin:0 16px 2px}
+.per-recipe{font-size:13px;font-weight:700;color:var(--green);margin:10px 0 0}
+.per-recipe.small{font-size:12px;margin:6px 0 0}
+.compare-wrap{margin-top:20px}
+.compare-wrap h3{font-family:Georgia,serif;font-size:24px;font-weight:500;margin:0 0 6px}
+.compare-wrap p{font-size:13px;color:var(--muted);margin:10px 0 0}
+.compare{width:100%;border-collapse:collapse;font-size:13px}
+.compare th,.compare td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.compare td:first-child{font-weight:600}
+.compare .yes{color:var(--green);font-weight:700}
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.persona{border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:18px}
+.persona h3{font-family:Georgia,serif;font-size:19px;font-weight:500;margin:0 0 4px}
+.persona p{font-size:13px;color:var(--muted);margin:0}
+.persona a{color:var(--green);font-weight:700}
+
 .how{background:var(--sage)}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.step{text-align:center;padding:12px}.step-num{width:48px;height:48px;margin:0 auto 17px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-family:Georgia,serif;font-size:22px}.step h3{font-family:Georgia,serif;font-weight:500;font-size:23px}.step p{font-size:13px;color:var(--muted);max-width:260px;margin:auto}
 .bundle{background:#f2f0e8}.bundle-card{max-width:850px;margin:auto;background:#fffdf8;border:1px solid #d9e0d5;border-radius:28px;box-shadow:var(--shadow);padding:38px;display:grid;grid-template-columns:1fr .9fr;gap:35px;align-items:center}.bundle-visual{background:#f0e8dc;border-radius:20px;min-height:310px;display:flex;align-items:center;justify-content:center;overflow:hidden}.bundle-visual img{width:160px;height:auto;border-radius:10px;box-shadow:10px 14px 24px #26382d30;margin:0 -8px}.pill{display:inline-block;background:#e6eee4;color:var(--green);font-size:10px;font-weight:900;letter-spacing:.12em;padding:8px 12px;border-radius:99px}.bundle-copy h2{font-size:37px;line-height:1.04;margin:15px 0}.bundle-copy p{font-size:13px;color:var(--muted)}.bundle-list{padding:0;list-style:none;font-size:12px;color:#4e5f53;line-height:2}.bundle-list li:before{content:"✓";color:var(--green2);font-weight:900;margin-right:9px}.bundle-price{display:flex;align-items:baseline;gap:10px;border-top:1px solid var(--line);padding-top:17px;margin-top:16px}.bundle-price strong{font-size:39px;color:var(--green)}.bundle-price del{color:#899188}.bundle-copy .btn{width:100%;margin-top:12px}
 .guarantee{display:flex;gap:22px;align-items:center;max-width:760px;margin:auto;padding:30px;border:1px solid var(--line);background:#fffdf8;border-radius:22px}.seal{width:76px;height:76px;flex:0 0 76px;border:2px solid #8ca48c;border-radius:50%;display:grid;place-items:center;color:var(--green);font-family:Georgia,serif;text-align:center;font-size:13px;line-height:1.1}.guarantee h3{font-family:Georgia,serif;font-size:25px;font-weight:500;margin:0 0 5px}.guarantee p{font-size:13px;color:var(--muted);margin:0}
@@ -80,7 +100,7 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
  .stats-grid{grid-template-columns:repeat(2,1fr);row-gap:17px;padding:22px 0}.stat:nth-child(2){border:0}.stat strong{font-size:25px}
  section{padding:62px 0}.section-head{margin-bottom:28px}.section-head h2{font-size:36px}.benefit-grid,.book-grid,.preview-grid,.steps{grid-template-columns:1fr}.benefit{padding:22px}.product{padding:17px}.cover{height:260px}.product p{min-height:0}
  .included-grid{grid-template-columns:1fr;gap:28px}.included-art{min-height:0;max-width:340px}.included-copy h2{font-size:36px}
- .preview-grid{grid-template-columns:1fr 1fr;gap:10px}.preview-img{height:220px}.preview-card h3{font-size:17px;margin:11px 11px 2px}.preview-card p{margin:0 11px 12px;font-size:10px}
+ .preview-grid{grid-template-columns:1fr 1fr;gap:10px}.preview-img{height:220px}.gallery-img{height:200px}.preview-card .macro{margin:0 11px 2px}.persona-grid{grid-template-columns:1fr}.compare{font-size:12px}.compare-wrap h3{font-size:20px}.preview-card h3{font-size:17px;margin:11px 11px 2px}.preview-card p{margin:0 11px 12px;font-size:10px}
  .bundle-card{grid-template-columns:1fr;padding:17px;gap:20px}.bundle-visual{min-height:260px}.bundle-visual img{width:130px}.bundle-copy{padding:0 5px 8px}.bundle-copy h2{font-size:32px}
  .guarantee{padding:20px;align-items:flex-start}.seal{width:62px;height:62px;flex-basis:62px;font-size:11px}.guarantee h3{font-size:21px}
  .final-cta{padding:60px 0}.footer-row{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}
@@ -208,20 +228,33 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
     <div class="cover c1"><img src="assets/cover-b1-300.jpg" alt="Guilt-Free Cravings cover" width="300" height="320" loading="lazy"></div>
     <div class="meta">120 recipes · 328 pages</div><h3>Guilt-Free Cravings</h3><p>Discover desserts, breakfasts, savory mains and drinks made without refined sugar.</p>
     <ul><li>Desserts and sweet favorites</li><li>Breakfasts, mains and drinks</li><li>Four-week plan and pantry guide</li></ul>
-    <div class="product-bottom"><div class="price-row"><strong>$19.99</strong><del>$39.99</del></div><a class="btn btn-buy" href="https://www.paypal.com/ncp/payment/Q8X7HRHX2LJ66">Buy now — $19.99</a></div>
+    <div class="product-bottom"><div class="price-row"><strong>$19.99</strong><del>$39.99</del></div>
+    <p class="per-recipe small">Under 17&cent; a recipe</p><a class="btn btn-buy" href="https://www.paypal.com/ncp/payment/Q8X7HRHX2LJ66">Buy now — $19.99</a></div>
    </article>
    <article class="product">
     <div class="cover c2"><img src="assets/cover-b2-300.jpg" alt="Eat More, Weigh Less cover" width="300" height="320" loading="lazy"></div>
     <div class="meta">60 recipes · 221 pages</div><h3>Eat More, Weigh Less</h3><p>Practical, satisfying meals with calorie and protein information to support informed meal choices.</p>
     <ul><li>Breakfasts, lunches and dinners</li><li>Snacks, salads and sides</li><li>Four-week plan and worksheets</li></ul>
-    <div class="product-bottom"><div class="price-row"><strong>$19.99</strong><del>$24.99</del></div><a class="btn btn-buy" href="https://www.paypal.com/ncp/payment/PRGD3P6BX3P6C">Buy now — $19.99</a></div>
+    <div class="product-bottom"><div class="price-row"><strong>$19.99</strong><del>$24.99</del></div>
+    <p class="per-recipe small">33&cent; a recipe</p><a class="btn btn-buy" href="https://www.paypal.com/ncp/payment/PRGD3P6BX3P6C">Buy now — $19.99</a></div>
    </article>
    <article class="product">
     <div class="cover c3"><img src="assets/cover-b3-300.jpg" alt="Beat the Bloat cover" width="300" height="320" loading="lazy"></div>
     <div class="meta">60 recipes · 144 pages</div><h3>Beat the Bloat</h3><p>Explore smoothies, chia breakfasts, refreshers and simple meals with a structured planning guide.</p>
     <ul><li>60 recipes and ingredient ideas</li><li>Fiber information and Gut Score</li><li>28-day plan and shopping lists</li></ul>
-    <div class="product-bottom"><div class="price-row"><strong>$24.99</strong><del>$29.99</del></div><a class="btn btn-buy" href="https://www.paypal.com/ncp/payment/SFBT26YZYEHNY">Buy now — $24.99</a></div>
+    <div class="product-bottom"><div class="price-row"><strong>$24.99</strong><del>$29.99</del></div>
+    <p class="per-recipe small">42&cent; a recipe</p><a class="btn btn-buy" href="https://www.paypal.com/ncp/payment/SFBT26YZYEHNY">Buy now — $24.99</a></div>
    </article>
+  </div>
+ </div>
+</section>
+<section id="which-book">
+ <div class="wrap">
+  <div class="section-head"><div class="eyebrow">Which book is for me?</div><h2>Start with the craving.</h2><p>Three books, three different hungers. Pick the one that sounds like you — or get all three.</p></div>
+  <div class="persona-grid">
+   <article class="persona"><h3>Dessert first?</h3><p>You want dessert every day without the sugar crash. <a href="healthy-cravings.html">Guilt-Free Cravings &rarr;</a></p></article>
+   <article class="persona"><h3>Eating lighter?</h3><p>Every meal under 500 calories, with 25 g of protein or more. <a href="everyday-weight-loss-kitchen.html">Eat More, Weigh Less &rarr;</a></p></article>
+   <article class="persona"><h3>Bloated after meals?</h3><p>60 gut-friendly recipes and a 28-day reset plan. <a href="gut-debloat-reset.html">Beat the Bloat &rarr;</a></p></article>
   </div>
  </div>
 </section>
@@ -244,6 +277,19 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
   </div>
  </div>
 </section>
+<section class="preview gallery-sec" id="gallery">
+ <div class="wrap">
+  <div class="section-head"><div class="eyebrow">A taste of what's inside</div><h2>The recipes you'll make first.</h2><p>Real recipes from all three books — photographed to make your mouth water. Every one is in its book, with full ingredients, method and nutrition.</p></div>
+  <div class="preview-grid">
+   <article class="preview-card"><div class="preview-img gallery-img"><img src="assets/gallery-b1-brownies.webp" alt="Midnight Fudge Brownies — thick fudge brownies with molten chocolate centre" loading="lazy"></div><h3>Midnight Fudge Brownies</h3><p class="macro">198 cal · 7 g protein · zero refined sugar</p><p>Thick, fudgy, molten in the middle — the bake your freezer will thank you for.</p></article>
+   <article class="preview-card"><div class="preview-img gallery-img"><img src="assets/gallery-b1-cheesecake-bars.webp" alt="Raspberry Swirl Cheesecake Bars — creamy cheesecake with raspberry coulis" loading="lazy"></div><h3>Raspberry Swirl Cheesecake Bars</h3><p class="macro">168 cal · 10 g protein · zero refined sugar</p><p>Creamy cheesecake swirled with raspberry — the prettiest bar in the book.</p></article>
+   <article class="preview-card"><div class="preview-img gallery-img"><img src="assets/gallery-b2-salmon-skillet.webp" alt="Creamy Tuscan Garlic Salmon Skillet — salmon fillets in creamy garlic sauce" loading="lazy"></div><h3>Creamy Tuscan Garlic Salmon Skillet</h3><p class="macro">465 cal · 44 g protein</p><p>Restaurant dinner from one pan — salmon, sun-dried tomatoes and spinach.</p></article>
+   <article class="preview-card"><div class="preview-img gallery-img"><img src="assets/gallery-b2-berry-pancakes.webp" alt="Cottage Cheese Berry Cloud Pancakes — fluffy pancakes with berries and maple syrup" loading="lazy"></div><h3>Cottage Cheese Berry Cloud Pancakes</h3><p class="macro">400 cal · 34 g protein</p><p>Fluffy, berry-loaded, maple-drenched — breakfast that eats like dessert.</p></article>
+   <article class="preview-card"><div class="preview-img gallery-img"><img src="assets/gallery-b3-mango-cups.webp" alt="Cardamom Mango Cups — mango cubes with yogurt, pistachio and mint" loading="lazy"></div><h3>Cardamom Mango Cups</h3><p class="macro">150 cal · 9 g protein · Gut Score 5/10</p><p>Looks far fancier than it is — ripe mango, cool yogurt, a whisper of cardamom.</p></article>
+   <article class="preview-card"><div class="preview-img gallery-img"><img src="assets/gallery-b3-papaya-smoothie.webp" alt="Papaya Pineapple Enzyme Smoothie — golden smoothie with papaya and pineapple" loading="lazy"></div><h3>Papaya Pineapple Enzyme Smoothie</h3><p class="macro">Gut Score 7/10 · 6 g fiber</p><p>Papaya and pineapple enzymes — the morning bloat-ease blend.</p></article>
+  </div>
+ </div>
+</section>
 <section class="how">
  <div class="wrap">
   <div class="section-head"><div class="eyebrow">Simple from the start</div><h2>Your cookbooks, in three easy steps.</h2><p>A straightforward digital purchase and download experience.</p></div>
@@ -262,6 +308,7 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
    <div class="bundle-copy"><span class="pill">COMPLETE KITCHEN</span><h2>Complete Kitchen — All 3 Books</h2><p>All three digital cookbooks, together in one collection.</p>
     <ul class="bundle-list"><li>Guilt-Free Cravings — 120 recipes</li><li>Eat More, Weigh Less — 60 recipes</li><li>Beat the Bloat — 60 recipes</li><li>693 total pages of cookbook content</li><li>Meal plans and shopping resources</li><li>Instant digital PDF access</li></ul>
     <div class="bundle-price"><strong>$39.99</strong><del>$84.97</del></div><div class="saving">SAVE $44.98 · 53% OFF</div>
+    <p class="per-recipe">That&rsquo;s under 17&cent; a recipe &mdash; 240 recipes for $39.99.</p>
     <a class="btn" href="https://www.paypal.com/ncp/payment/B35Z26F97JPWQ" aria-label="Buy all 3 cookbooks for $39.99">GET ALL 3 COOKBOOKS</a>
     <div class="micro">30-day money-back guarantee · Secure checkout</div>
    </div>
