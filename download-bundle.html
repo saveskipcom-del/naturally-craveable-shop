@@ -55,11 +55,12 @@
 </style>
 </head>
 <body>
+<div class="announcement" style="background:#315d45;color:#fff;text-align:center;padding:9px 16px;font-size:12px;letter-spacing:.08em">BLACK FRIDAY SALE · ENDS IN <span class="cd" style="font-variant-numeric:tabular-nums">12:00:00</span></div>
 
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="/">Naturally <span>Craveable</span></a>
-    <a class="btn btn-small" href="complete-collection.html">Get the Complete Collection — $49.99</a>
+    <a class="btn btn-small" href="complete-collection.html">Get the Complete Kitchen — All 3 Books — $39.99</a>
   </div>
 </header>
 
@@ -84,11 +85,11 @@
               <p>240 recipes · 3 books · Instant PDF download</p>
             </div>
           </div>
-        <a class="btn btn-big" id="dlBtn1" href="#" download>Download Healthy Cravings (PDF)</a>
+        <a class="btn btn-big" id="dlBtn1" href="#" download>Download Guilt-Free Cravings (PDF)</a>
         <p class="thanks-note" id="startedNote1" hidden>Download has started 🎉</p>
-        <a class="btn btn-big" id="dlBtn2" href="#" download>Download The Everyday Weight Loss Kitchen (PDF)</a>
+        <a class="btn btn-big" id="dlBtn2" href="#" download>Download Eat More, Weigh Less (PDF)</a>
         <p class="thanks-note" id="startedNote2" hidden>Download has started 🎉</p>
-        <a class="btn btn-big" id="dlBtn3" href="#" download>Download Gut & Debloat Reset (PDF)</a>
+        <a class="btn btn-big" id="dlBtn3" href="#" download>Download Beat the Bloat (PDF)</a>
         <p class="thanks-note" id="startedNote3" hidden>Download has started 🎉</p>
           <p class="thanks-note">Save the PDF to your device now — this is your copy to keep.</p>
           <ol class="thanks-steps">
@@ -135,7 +136,7 @@
   can be pasted in the form below. The book file sits behind a long
   random filename that is only revealed after the key checks out.
 */
-var CONFIG = {"ACCESS_HASH": "5480cdef402a8a306d603525302ec06334ece78b481e28b509000162d5628576", "STORE_KEY": "nc_dl_key_bundle", "FILES": [{"label": "Healthy Cravings", "path": "assets/dl-46f02a2c7c03417e5cf03d5c.pdf", "btn": "dlBtn1", "note": "startedNote1"}, {"label": "The Everyday Weight Loss Kitchen", "path": "assets/dl-8e8da43d17c5eaeff2ce6f23.pdf", "btn": "dlBtn2", "note": "startedNote2"}, {"label": "Gut & Debloat Reset", "path": "assets/dl-6f08e574b3346bbebb6a77da.pdf", "btn": "dlBtn3", "note": "startedNote3"}]};
+var CONFIG = {"ACCESS_HASH": "5480cdef402a8a306d603525302ec06334ece78b481e28b509000162d5628576", "STORE_KEY": "nc_dl_key_bundle", "FILES": [{"label": "Guilt-Free Cravings", "path": "assets/dl-46f02a2c7c03417e5cf03d5c.pdf", "btn": "dlBtn1", "note": "startedNote1"}, {"label": "Eat More, Weigh Less", "path": "assets/dl-8e8da43d17c5eaeff2ce6f23.pdf", "btn": "dlBtn2", "note": "startedNote2"}, {"label": "Beat the Bloat", "path": "assets/dl-6f08e574b3346bbebb6a77da.pdf", "btn": "dlBtn3", "note": "startedNote3"}]};
 
 function showState(id){
   var ids = ["stateChecking","stateUnlocked","stateLocked"];
@@ -242,5 +243,6 @@ CONFIG.FILES.forEach(function(f){
   }catch(e){}
 })();
 </script>
+<script>/* Black Friday countdown: ends 2026-11-26 21:00 IST */(function(){var end=new Date("2026-11-26T21:00:00+05:30").getTime();function tick(){var d=end-Date.now();var v="00:00:00";if(d>0){var h=Math.floor(d/36e5),m=Math.floor(d%36e5/6e4),s=Math.floor(d%6e4/1e3);v=String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}document.querySelectorAll(".cd").forEach(function(e){e.textContent=v;});}tick();setInterval(tick,1000);})();</script>
 </body>
 </html>
