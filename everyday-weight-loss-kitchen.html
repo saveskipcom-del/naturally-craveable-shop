@@ -162,7 +162,7 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
 </style>
 </head>
 <body>
-<div class="announcement">BLACK FRIDAY · 20% OFF EAT MORE, WEIGH LESS · ENDS IN <span class="cd" style="font-variant-numeric:tabular-nums">12:00:00</span></div>
+<div class="announcement">20% OFF EAT MORE, WEIGH LESS · ENDS IN <span class="cd" style="font-variant-numeric:tabular-nums">12:00:00</span></div>
 <header>
  <div class="wrap nav">
   <a class="logo" href="https://crave.thewellnessherb.com/">naturally <span>craveable.</span></a>
@@ -184,7 +184,7 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
    .bf-countdown span{font-size:12px;font-weight:800;letter-spacing:.04em;color:#1e3a2d}
    @media(max-width:680px){.bf-countdown{padding:5px 8px}.bf-countdown span{font-size:12px;letter-spacing:.03em}}
    </style>
-   <div class="bf-countdown"><span>🔥 EARLY BLACK FRIDAY SALE - <span class="cd-t">12:00:00</span></span></div>
+   <div class="bf-countdown"><span>🔥 LIMITED-TIME OFFER - <span class="cd-t">12:00:00</span></span></div>
    <div class="price-line"><span class="price">$19.99</span><span class="old">$24.99</span></div>
    <div class="saving">SAVE $5.00 · 20% OFF</div>
    <div class="hero-actions"><a class="btn" href="https://www.paypal.com/ncp/payment/PRGD3P6BX3P6C">BUY NOW — $19.99</a><a class="btn secondary" href="#inside">SEE WHAT'S INSIDE ↓</a></div>
@@ -311,7 +311,7 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
     <div class="cover c1"><img src="assets/cover-b1-300.jpg" alt="Guilt-Free Cravings cover" width="300" height="320" loading="lazy"></div>
     <div class="meta">120 recipes · 328 pages</div><h3>Guilt-Free Cravings</h3><p>Discover desserts, breakfasts, savory mains and drinks made without refined sugar.</p>
     <ul><li>Desserts and sweet favorites</li><li>Breakfasts, mains and drinks</li><li>Four-week plan and pantry guide</li></ul>
-    <div class="product-bottom"><div class="price-row"><strong>$9.99</strong><del>$39.99</del></div><a class="btn btn-buy" href="https://www.paypal.com/ncp/payment/Q8X7HRHX2LJ66">Buy now — $9.99</a></div>
+    <div class="product-bottom"><div class="price-row"><strong>$19.99</strong><del>$39.99</del></div><a class="btn btn-buy" href="https://www.paypal.com/ncp/payment/Q8X7HRHX2LJ66">Buy now — $19.99</a></div>
    </article>
    <article class="product">
     <div class="cover c2"><img src="assets/cover-b2-300.jpg" alt="Eat More, Weigh Less cover" width="300" height="320" loading="lazy"></div>
@@ -444,6 +444,6 @@ function makeCarousel(rootId, slideClass, dotsId, prevId, nextId, delay){
 makeCarousel('reviewCarousel','review-slide','revDots','revPrev','revNext',6000);
 makeCarousel('miniCarousel','mini-slide','miniDots','miniPrev','miniNext',5000);
 </script>
-<script>/* Black Friday countdown: 12h per visitor (localStorage bf_end; resets when expired) */(function(){var K="bf_end",end=0;try{end=+localStorage.getItem(K)||0;}catch(e){}if(!end||end<Date.now()){end=Date.now()+12*36e5;try{localStorage.setItem(K,String(end));}catch(e){}}function p(n){return String(n).padStart(2,"0");}function tick(){var d=end-Date.now();var h=0,m=0,s=0;if(d>0){h=Math.floor(d/36e5);m=Math.floor(d%36e5/6e4);s=Math.floor(d%6e4/1e3);}var v=p(h)+":"+p(m)+":"+p(s);document.querySelectorAll(".cd").forEach(function(e){e.textContent=v;});document.querySelectorAll(".cd-t").forEach(function(e){e.textContent=v;});}tick();setInterval(tick,1000);})();</script>
+<script>/* Offer countdown: 12h per visitor (localStorage offer_end; resets when expired) */(function(){var K="offer_end",end=0;try{end=+localStorage.getItem(K)||0;}catch(e){}if(!end||end<Date.now()){end=Date.now()+12*36e5;try{localStorage.setItem(K,String(end));}catch(e){}}function p(n){return String(n).padStart(2,"0");}function tick(){var d=end-Date.now();var h=0,m=0,s=0;if(d>0){h=Math.floor(d/36e5);m=Math.floor(d%36e5/6e4);s=Math.floor(d%6e4/1e3);}var v=p(h)+":"+p(m)+":"+p(s);document.querySelectorAll(".cd").forEach(function(e){e.textContent=v;});document.querySelectorAll(".cd-t").forEach(function(e){e.textContent=v;});}tick();setInterval(tick,1000);})();</script>
 </body>
 </html>
