@@ -184,6 +184,47 @@ footer{padding:35px 0 95px;background:#20382a;color:#e6ede4}.footer-row{display:
   <a class="navcta" href="complete-collection.html">GET ALL 3 — $39.99</a>
  </div>
 </header>
+<style>
+.make-carousel{padding:26px 0 6px;background:var(--cream)}
+.mc-kicker{margin:0 0 12px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green2);text-align:center}
+.mc-carousel{position:relative;overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow)}
+.mc-track{display:flex;transition:transform .6s ease}
+.mc-slide{position:relative;min-width:100%;margin:0;aspect-ratio:3/2}
+.mc-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.mc-slide figcaption{position:absolute;left:0;right:0;bottom:0;padding:36px 18px 16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.78));color:#fff;text-align:left}
+.mc-slide figcaption strong{display:block;font-size:20px;line-height:1.25}
+.mc-slide figcaption span{display:block;margin-top:3px;font-size:12px;font-weight:700;color:#cfe3d2}
+.mc-arrow{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:22px;line-height:1;cursor:pointer;padding:0 0 2px}
+.mc-prev{left:12px}.mc-next{right:12px}
+.mc-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.mc-dot{width:8px;height:8px;border-radius:50%;border:0;padding:0;cursor:pointer;background:#d8d2c4}
+.mc-dot.active{background:var(--green);transform:scale(1.25)}
+@media(max-width:680px){.mc-slide figcaption strong{font-size:17px}}
+</style>
+<section class="make-carousel" id="make-carousel">
+ <div class="wrap">
+  <p class="mc-kicker">A taste of what's inside</p>
+  <div class="mc-carousel" id="mcCarouselBox">
+   <div class="mc-track" id="mcTrack">
+    <figure class="mc-slide"><img src="assets/gallery-b1-brownies.webp" alt="Midnight Fudge Brownies — thick fudge brownies with molten chocolate centre"><figcaption><strong>Midnight Fudge Brownies</strong><span>198 cal · 7 g protein · zero refined sugar</span></figcaption></figure>
+    <figure class="mc-slide"><img src="assets/gallery-b1-cheesecake-bars.webp" alt="Raspberry Swirl Cheesecake Bars — creamy cheesecake with raspberry coulis" loading="lazy"><figcaption><strong>Raspberry Swirl Cheesecake Bars</strong><span>168 cal · 10 g protein · zero refined sugar</span></figcaption></figure>
+    <figure class="mc-slide"><img src="assets/gallery-b1-oat-cookies.webp" alt="Chewy Oat Chocolate Chip Cookies — a stack of thick oat cookies with melty dark chocolate chips" loading="lazy"><figcaption><strong>Chewy Oat Chocolate Chip Cookies</strong><span>168 cal · 4 g protein · zero refined sugar</span></figcaption></figure>
+    <figure class="mc-slide"><img src="assets/gallery-b1-nice-cream.webp" alt="Banana Peanut Butter Nice Cream — scoops of banana nice cream with peanut drizzle" loading="lazy"><figcaption><strong>Banana Peanut Butter Nice Cream</strong><span>221 cal · 17 g protein · zero refined sugar</span></figcaption></figure>
+   </div>
+   <button class="mc-arrow mc-prev" aria-label="Previous recipe">‹</button>
+   <button class="mc-arrow mc-next" aria-label="Next recipe">›</button>
+  </div>
+  <div class="mc-dots" id="mcDots">
+   <button class="mc-dot active" aria-label="Slide 1"></button>
+   <button class="mc-dot" aria-label="Slide 2"></button>
+   <button class="mc-dot" aria-label="Slide 3"></button>
+   <button class="mc-dot" aria-label="Slide 4"></button>
+  </div>
+ </div>
+</section>
+<script>
+(function(){var t=document.getElementById('mcTrack'),d=Array.prototype.slice.call(document.querySelectorAll('#mcDots .mc-dot')),n=4,i=0,timer=null;function go(k){i=(k+n)%n;t.style.transform='translateX('+(-i*100)+'%)';d.forEach(function(x,j){x.classList.toggle('active',j===i)})}function start(){stop();timer=setInterval(function(){go(i+1)},4000)}function stop(){if(timer){clearInterval(timer);timer=null}}document.querySelector('.mc-prev').addEventListener('click',function(){go(i-1);start()});document.querySelector('.mc-next').addEventListener('click',function(){go(i+1);start()});d.forEach(function(x,j){x.addEventListener('click',function(){go(j);start()})});var c=document.getElementById('mcCarouselBox');c.addEventListener('mouseenter',stop);c.addEventListener('mouseleave',start);var sx=0;c.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;stop()},{passive:true});c.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40){go(i+(dx<0?1:-1))}start()},{passive:true});start()})();
+</script>
 <main>
 <section class="hero">
  <div class="wrap hero-grid">
